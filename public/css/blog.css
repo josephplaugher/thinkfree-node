@@ -1,0 +1,305 @@
+body {
+    margin: auto;
+    width: 100%;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.logo {
+    font-family: serif;
+    color: rgba(255, 0, 0, 0.829);
+ }
+ 
+.commentHeader {
+    color: black;
+}
+
+@media screen and (min-width:701px) {
+
+    #container {
+        background-color: #FFFFFF;
+        width: auto;
+        height: auto;
+    }
+
+    #header {
+        background-color: blue;
+        padding: 50px;
+    }
+
+    .pageheader{
+        color: #FFFFFF;
+        font-size: 50px;
+        width: 80%;
+        margin-left:80px;
+    }
+
+    .menu-button, .bar {
+        display: none;
+    }
+
+    #bloglist {
+        margin:auto;
+        margin-top: 20px;
+        width: 95%;
+        float: right;
+        cursor: pointer;
+        max-height: 500px;
+        overflow-y: auto;
+    }
+    
+    #bloglist-container {
+        right: 0px;
+        width: 25%;
+        top: 160px;
+        position: absolute;
+        float: right;
+    }
+
+    .listTitle{
+        font-size: 20px;
+    }
+
+    .listDesc{
+        font-size: 12px;
+    }
+
+    .open {
+        display: none;
+    }
+
+    #viewblog {
+        padding:20px;
+        display: inline;
+    }
+
+    #title {
+        font-size: 30px;
+        padding:35px;
+        text-align: center;
+    }
+
+    #description {
+        font-size: 20px;
+        padding:25px;
+        text-align: center;
+    }
+
+    #body {
+        font-size: 12px;
+        padding-bottom: 30px;
+    }
+
+    #currentView {
+        margin: auto;
+        float: center;
+        text-align: left
+    }
+
+    #comment-container {
+        padding: 0px;
+    }
+
+    #comments {
+        clear: both;
+    }
+
+    .comments {
+        text-align: left;
+        padding-left: 30px;
+    }
+
+    #comment-box, #login-status {
+        display: "none";
+    }
+
+    #newcomment {
+        padding: 0px;
+        border-radius: 5px;
+        background-color: rgb(190, 189, 189);
+        color: white;
+    }
+
+    .blogbody {
+        font-size: 12px;
+    }
+
+    .comment-username {
+        font-size: 14px;
+        font-style: italic;
+        text-align: left;
+    }
+
+    .textinput {
+        text-align: left;
+        padding: 10px;
+        background-color: white ;
+        width: 200px;
+        margin: auto;
+        height: auto;
+        color: black;
+        border-radius: 5px;
+        line-height: 20px;
+        display: inline-block;
+    }
+
+}
+
+@media screen and (max-width:700px){
+
+    #container {
+        background-color: #FFFFFF;
+        width: auto;
+        height: auto;
+    }
+
+    #header {
+        background-color: blue;
+        padding: 10px;
+    }
+
+    .pageheader{
+        color: #FFFFFF;
+        font-size: 40px;
+        width: 95%;
+        margin-left:3px;
+    }
+
+    #currentUser {
+        padding: 5px;
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    #bloglist-container {
+        display: none;
+    }
+
+    #bloglist {
+        display: none;
+        background-color: blue;
+        color: white;
+        top: 75px;
+        position: absolute;
+        padding: 5px;
+        border-radius: 5px;
+        margin-top: 23px;
+        width: 90%;
+        height: 350px;
+        right:0px;
+        cursor: pointer;
+        max-height: 500px;
+        overflow-y: auto;
+        z-index: +10;
+    }
+
+    #menu-button {
+        clear: both;
+        position: absolute;
+        float: right;
+        right: 5px;
+        top: 50px;
+        cursor: pointer;
+    }
+    
+    .bar {
+        width: 20px;
+        height: 3px;
+        background-color:white;
+        margin: 3px 0;
+    }
+
+    .listTitle{
+        font-size: 20px;
+    }
+
+    .listDesc{
+        font-size: 12px;
+    }
+
+    .open {
+        display: none;
+    }
+
+    #viewblog {
+        padding: 0px;
+        display: inline;
+    }
+
+    #title {
+        font-size: 30px;
+        padding:3px;
+        text-align: center;
+    }
+
+    #description {
+        font-size: 20px;
+        padding:3px;
+        text-align: center;
+    }
+
+    #body {
+        font-size: 12px;
+        padding-left: 3px;
+        padding-right: 3px;
+        padding-bottom: 30px;
+    }
+
+    #currentView {
+        margin: auto;
+        float: center;
+        text-align: left
+    }
+
+    #comment-container {
+        padding: 0px;
+    }
+
+    #comments {
+        clear: both;
+    }
+
+    .comments {
+        text-align: left;
+        padding-left: 30px;
+    }
+
+    #comment-box, #login-status {
+        display: "none";
+        margin: auto;
+        width: 95%;
+    }
+
+    .submit {
+        margin: auto;
+        width: 75%;
+        text-align: center;
+    }
+
+    .blogbody {
+        font-size: 12px;
+    }
+
+    .comment-username {
+        font-size: 14px;
+        font-style: italic;
+        text-align: left;
+    }
+    
+    input[textarea] {
+    width:200px;
+    }
+
+    .textinput {
+        text-align: left;
+        padding: 10px;
+        width: 200px;
+        margin: auto;
+        height: auto;
+        color: black;
+        border-radius: 5px;
+        line-height: 20px;
+        display: inline-block;
+    }
+
+}
