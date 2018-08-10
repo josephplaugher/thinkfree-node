@@ -7,7 +7,6 @@ const db = require('./util/postgres');
 app.use(express.static('public'));
 app.set('view engine', 'ejs')
 
-
 app.listen(8080, function(){
   console.log('server started port 8080');
 });
@@ -31,11 +30,17 @@ app.get('/', function (req, res) {
   db.query('SELECT title, description, body, postid FROM posts ORDER BY postid DESC')
     .then(resp => {
       let blogs = resp.rows;
+      let thisId = [];
+      thisId[0] = blogs[0].postid;
+      db.query('SELECT commentid, username, body FROM comments WHERE postid=$1', thisId)
+        .then(comm => {
+          comnts = comm.rows;
           res.render('index', {
             title: blogs[0].title, 
             description: blogs[0].description, 
             body: blogs[0].body,
-            comments: "this is a comment"});
+            comments: comnts});
+          });
     })
     }catch(err){
       console.log('error: ', err);
