@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const db = require('./util/postgres');
 
 app.use(express.static('public'));
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 app.listen(8080, function(){
   console.log('server started port 8080');
@@ -39,7 +39,7 @@ app.get('/', function (req, res) {
             title: blogs[0].title, 
             description: blogs[0].description, 
             body: blogs[0].body,
-            comments: comnts});
+            comments: "the comments: "+ comnts});
           });
     })
     }catch(err){
