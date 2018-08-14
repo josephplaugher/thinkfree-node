@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 //const Query = require('./util/Query');
-const db = require('./util/postgres');
+const Conn = require('./util/postgres');
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -19,40 +19,67 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', function (req, res) {
-  /*var query = new Query('SELECT title, description, body FROM posts ORDER BY postid DESC')
-  data = query.runQuery();
-  console.log(data);
-  var comment = new Query('SELECT commentid, username, body FROM comments WHERE postid = $1')
-  //commentlist = comment.runQuery(data[0].postid);
-  */
- try{
-  db.query('SELECT title, description, body, postid FROM posts ORDER BY postid DESC')
+const getBlogList = (req, res, next) => {
+  Conn.query(`
+    SELECT title, description, postid 
+    FROM posts 
+    ORDER BY postid DESC
+  `)
     .then(resp => {
-      let blogs = resp.rows;
-      let thisId = [];
-      thisId[0] = blogs[0].postid;
-      db.query('SELECT commentid, username, body FROM comments WHERE postid=$1', thisId)
-        .then(comm => {
-          comnts = comm.rows;
-          res.render('index', {
-            title: blogs[0].title, 
-            description: blogs[0].description, 
-            body: blogs[0].body,
-            comments: "the comments: "+ comnts});
-          });
+      let list = '<div>';
+      let data = resp.rows;
+      data.forEach(elem => {
+        list += '<div id="' + elem.postid +'">' + elem.title + '<br/>' + elem.description + '</div>';
+      });
+      list += '</div>';
+      req.bloglist = data;
+      req.markedUplist = list;
+      next();
     })
-    }catch(err){
-      console.log('error: ', err);
-    }
-});
-
-function getData(data) {
-
 }
 
-/*
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/index.html'));
-});
-*/
+const getLatestPost = (req, res, next) => {
+  var query = {
+    "text":`
+      SELECT title, description, body, postid 
+      FROM posts 
+      WHERE postid=$1 
+      ORDER BY postid DESC`,
+    "values":[req.bloglist[0].postid]}
+  Conn.query(query)
+    .then(resp => {
+      req.latest = resp.rows;
+      next();
+    }) 
+}
+
+const getComments = (req, res, next) => {
+  var query = {
+    "text":`
+      SELECT commentid, 
+          username, 
+          body 
+      FROM comments
+      WHERE postid=$1 
+      ORDER BY postid DESC`,
+    "values":[req.bloglist[0].postid]}
+  Conn.query(query)
+    .then(resp => {
+      let comm = '<div>';
+      let data = resp.rows;
+      data.forEach(elem => {
+        comm += '<div id="' + elem.commentid +'">' + elem.username + '<br/>' + elem.body + '</div>';
+      });
+      comm += '</div>';
+      req.comments = comm;
+      res.render('index', {
+        title: req.latest[0].title,
+        description: req.latest[0].description,
+        body: req.latest[0].body,
+        blogList: req.markedUplist,
+        comments: req.comments
+      });
+    })
+}
+
+app.get('/', getBlogList, getLatestPost, getComments);

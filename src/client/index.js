@@ -1,12 +1,28 @@
-import Vue from 'vue';
+/*import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App'
 
-const vm = new Vue({
+ReactDOM.render(<App/>, document.getElementById('user'));
+
+
+
+
+/*import Vue from 'vue';
+
+Vue.component('login-status', {
     el: '#user',
-    data: {a:'Smith'},
-    created: function () {
-    // `this` points to the vm instance
-    console.log('Hello, ' + this.a)
+    data: function () {
+      return {a:'Smith'}
     },
     template: '<div id="login-status> {{ a }} </div>'
+});
 
+
+const vm = new Vue({
+  <div id="usr">
+    <login-status></login-status>
+  </div>
   });
+
+  */

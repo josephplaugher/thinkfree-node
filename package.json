@@ -1,13 +1,13 @@
 {
-  "name": "personalserver-server",
+  "name": "thinkfree-node",
   "version": "1.0.0",
-  "description": "API for personal server",
+  "description": "Blog site built on Nodejs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm run build\" \"npm run start-server\"",
     "build": "webpack",
-    "start-server": "NODE_PATH=./src && nodemon --harmony src/server.js"
+    "start-server": "NODE_PATH=./src && nodemon src/server.js"
   },
   "author": "Joseph Plaugher",
   "license": "ISC",
