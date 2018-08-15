@@ -70,7 +70,9 @@ body {
 
     #viewblog {
         padding:20px;
-        display: inline;
+        width: 73%;
+        float: left;
+        display: block;
     }
 
     #title {
@@ -198,7 +200,7 @@ body {
         position: absolute;
         float: right;
         right: 5px;
-        top: 50px;
+        top: 10px;
         cursor: pointer;
     }
     

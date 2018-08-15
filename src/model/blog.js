@@ -7,12 +7,11 @@ const getBlogList = function (req, res, next) {
     ORDER BY postid DESC
   `)
     .then(resp => {
-      let list = '<div>';
+      let list;
       let data = resp.rows;
       data.forEach(elem => {
-        list += '<div id="' + elem.postid +'">' + elem.title + '<br/>' + elem.description + '</div>';
+        list += '<div id="' + elem.postid +'"><span class="listTitle">' + elem.title + '</span><br/><span class="listDesc">' + elem.description + '</span></div>';
       });
-      list += '</div>';
       req.bloglist = data;
       req.markedUplist = list;
       next();
@@ -65,13 +64,13 @@ const getComments = function (req, res, next) {
       let comm = '<div>';
       let data = resp.rows;
       data.forEach(elem => {
-        comm += '<div id="' + elem.commentid +'">' + elem.username + '<br/>' + elem.body + '</div>';
+        comm += '<div id="' + elem.commentid +'" class="commentItem"><p><span class="userLabel">' + elem.username + '</span><br/><span class="commentBody">' + elem.body + '</span></p></div>';
       });
       comm += '</div>';
       req.comments = comm;
-      console.log('post: ',req.latest[0]);
+      /*console.log('post: ',req.latest[0]);
       console.log('list: ',req.markedUplist);
-      console.log('comments: ',req.comments);
+      console.log('comments: ',req.comments);*/
       res.render('index', {
         title: req.latest[0].title,
         description: req.latest[0].description,

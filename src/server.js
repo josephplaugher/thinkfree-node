@@ -8,8 +8,9 @@ const getComments = blog.getComments;
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-app.listen(8080, function(){
-  console.log('server started port 8080');
+let port = 8081;
+app.listen(port, function(){
+  console.log('server started port ' + port);
 });
 
 app.use((req, res, next) => {
@@ -22,3 +23,4 @@ app.use((req, res, next) => {
 
 app.get('/', getBlogList, getCurrentPost, getComments);
 app.get('/?postid=:postid', getBlogList, getCurrentPost, getComments);
+app.get('*', getBlogList, getCurrentPost, getComments);
