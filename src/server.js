@@ -1,9 +1,7 @@
 const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const blog = require('./model/blog')
+const app = express()
+const blog = require('./model/blog');
 const getBlogList = blog.getBlogList;
-const getLatestPost = blog.getLatestPost;
 const getCurrentPost = blog.getCurrentPost;
 const getComments = blog.getComments;
 
@@ -23,4 +21,4 @@ app.use((req, res, next) => {
 });
 
 app.get('/', getBlogList, getCurrentPost, getComments);
-app.get('/postid/:postid', getBlogList, getCurrentPost, getComments);
+app.get('/?postid=:postid', getBlogList, getCurrentPost, getComments);
