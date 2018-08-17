@@ -7,10 +7,10 @@ const getBlogList = function (req, res, next) {
     ORDER BY postid DESC
   `)
     .then(resp => {
-      let list;
+      let list = '';
       let data = resp.rows;
       data.forEach(elem => {
-        list += '<div id="' + elem.postid +'"><span class="listTitle">' + elem.title + '</span><br/><span class="listDesc">' + elem.description + '</span></div>';
+        list += '<div id="' + elem.postid +'" class="bloglist" ><span class="listTitle">' + elem.title + '</span><br/><span class="listDesc">' + elem.description + '</span></div>';
       });
       req.bloglist = data;
       req.markedUplist = list;

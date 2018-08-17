@@ -1,28 +1,25 @@
-/*import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App'
+import Ajax from './../util/ajax';
 
-ReactDOM.render(<App/>, document.getElementById('user'));
+function selectPost() {
+  let id = this.getAttribute("id");
+  console.log('the clicked id: ', id);
+  var ajax = new Ajax('selectPost','');
+  ajax.get("http://localhost:8081/"+ this.url + "/")
+    .then((res) => {
+      if(res.data.success){
+        
+      }
+    })
+}
 
+var bloglistItem = document.getElementsByClassName("bloglist");
+console.log('elem', bloglistItem);
+var getId = function() {
 
+  var id = this.getAttribute("id");
+    alert('id clicked: ',id);
+};
 
-
-/*import Vue from 'vue';
-
-Vue.component('login-status', {
-    el: '#user',
-    data: function () {
-      return {a:'Smith'}
-    },
-    template: '<div id="login-status> {{ a }} </div>'
-});
-
-
-const vm = new Vue({
-  <div id="usr">
-    <login-status></login-status>
-  </div>
-  });
-
-  */
+for (var i = 0; i < bloglistItem.length; i++) {
+    bloglistItem[i].addEventListener('click', selectPost, false);
+}
