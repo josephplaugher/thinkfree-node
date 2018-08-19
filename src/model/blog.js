@@ -39,8 +39,7 @@ const getPostByID = function (req, res, next) {
     "text":`
       SELECT title, description, body, postid 
       FROM posts 
-      WHERE postid=$1 
-      ORDER BY postid DESC`,
+      WHERE postid=$1`,
     "values":[req.query.postid]}
   Conn.query(query)
     .then(resp => {
@@ -68,9 +67,6 @@ const getComments = function (req, res, next) {
       });
       comm += '</div>';
       req.comments = comm;
-      /*console.log('post: ',req.latest[0]);
-      console.log('list: ',req.markedUplist);
-      console.log('comments: ',req.comments);*/
       res.render('index', {
         title: req.latest[0].title,
         description: req.latest[0].description,
@@ -81,4 +77,18 @@ const getComments = function (req, res, next) {
     })
 }
 
-module.exports = {getBlogList, getCurrentPost, getPostByID, getComments};
+const userSelectPost = function (req, res) {
+  var query = {
+    "text":`
+      SELECT title, description, body, postid 
+      FROM posts 
+      WHERE postid=$1`,
+    "values":[req.params.postid]}
+  Conn.query(query)
+    .then(resp => {
+      res.status(200).json({ postdata:resp.rows[0] });
+    }) 
+    .catch(e => console.error('Error: ',e.stack));
+}
+
+module.exports = {getBlogList, getCurrentPost, getPostByID, getComments, userSelectPost};

@@ -5,9 +5,9 @@ function Ajax(url, formData) {
     this.formData = formData;
 };
 
-Ajax.prototype.get = function(url) {
+Ajax.prototype.get = function() {
     //console.log('the token:', sessionStorage.getItem('AppreciateJWT'));
-    const request = axios({method: 'get', url: url,
+    const request = axios({method: 'get', url: this.url,
         responseType:'JSON'
         //headers:{"authorization": "bearer" + sessionStorage.getItem('AppreciateJWT'),"testing":"123"}
         });
@@ -22,8 +22,7 @@ Ajax.prototype.post = function(url,formData) {
         method: 'post',
         data: formData,
         config: { 
-            headers: {"Authorization": 'Bearer'+ sessionStorage.getItem('AppreciateJWT'),
-                      "Content-Type": "multipart/form-data"}},
+            headers: {"Content-Type": "multipart/form-data"}},
         responseType:'json'})  
         request
             .then(result => console.log('ajax firing: '+ result))

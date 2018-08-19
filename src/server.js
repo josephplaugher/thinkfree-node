@@ -1,9 +1,12 @@
 const express = require('express');
-const app = express()
+const app = express();
+const bodyParser = require('body-parser');
 const blog = require('./model/blog');
+const refreshComments = require('./model/comments');
 const getBlogList = blog.getBlogList;
 const getCurrentPost = blog.getCurrentPost;
 const getComments = blog.getComments;
+const userSelectPost = blog.userSelectPost;
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -23,4 +26,6 @@ app.use((req, res, next) => {
 
 app.get('/', getBlogList, getCurrentPost, getComments);
 app.get('/?postid=:postid', getBlogList, getCurrentPost, getComments);
+app.get('/selectedPost/:postid', userSelectPost);
+app.get('/refreshComments/:postid', refreshComments);
 app.get('*', getBlogList, getCurrentPost, getComments);
