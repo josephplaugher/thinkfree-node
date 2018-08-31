@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const csp = require('helmet-csp');
 const blog = require('./model/blog');
 const refreshComments = require('./model/comments');
 const getBlogList = blog.getBlogList;
@@ -11,7 +12,7 @@ const userSelectPost = blog.userSelectPost;
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-let port = 8081;
+let port = 8080;
 app.listen(port, function(){
   console.log('server started port ' + port);
 });

@@ -9,26 +9,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-      },
-      {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        include: [path.join(__dirname, 'src/client')],
+        exclude: /node_modules/,//keeping react files around, but we're not going to use them for now
+        use: {
+          loader: "babel-loader"
+        }
       },
       {
-        test: /\.scss$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          {
-            loader: 'sass-loader',
-          },
-        ],
-      },
-    ],
+        test:/\.css$/,
+        use:['style-loader','css-loader']
+      }
+    ]
   },
   watch: true,
   mode: 'development'

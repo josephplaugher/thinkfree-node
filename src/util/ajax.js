@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 function Ajax(url, formData) {
-    this.url = url;
+    this.url = "http://localhost:8080/" + url;
     this.formData = formData;
 };
 
