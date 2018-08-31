@@ -1,26 +1,7 @@
 import Ajax from './../util/ajax';
-//import User from './user';
-
-//const onSignIn = User.onSignIn();
-
-//onSignIn(googleUser);
-
-function onSignIn(googleUser) {
-  console.log('getting token...');
-  // Useful data for your client-side scripts:
-  var profile = googleUser.getBasicProfile();
-  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-  console.log('Full Name: ' + profile.getName());
-  console.log('Given Name: ' + profile.getGivenName());
-  console.log('Family Name: ' + profile.getFamilyName());
-  console.log("Image URL: " + profile.getImageUrl());
-  console.log("Email: " + profile.getEmail());
-
-  // The ID token you need to pass to your backend:
-  var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);
-};
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
 function selectPost() {
   let id = this.getAttribute("id");
@@ -58,3 +39,5 @@ function blogElemPositions(data) {
   document.getElementById("description").innerHTML = data.description;
   document.getElementById("body").innerHTML = data.body; 
 }
+
+ReactDOM.render(<App />, document.getElementById('root'));
