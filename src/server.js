@@ -30,5 +30,4 @@ app.get('/', getBlogList, getCurrentPost, getComments);
 app.get('/?postid=:postid', getBlogList, getCurrentPost, getComments);
 app.get('/selectedPost/:postid', userSelectPost);
 app.get('/refreshComments/:postid', refreshComments);
-app.get('*', getBlogList, getCurrentPost, getComments);
-app.get('/checkGoogleUser?email=:email', checkGoogleUser);
+app.get('/checkGoogleUser*', checkGoogleUser);

@@ -1,19 +1,21 @@
 import axios from 'axios';
 
-const LoginGoogleUser = (email) => {
-    console.log('logging in google user...');
-    axios({
-        method: 'get', url: 'http://localhost:8080/checkGoogleUser?email=' + email,
-        responseType: 'json'
-    }).then(resp => {
-        if (resp.exists) {
-            console.log('the user data...', resp.user);
-            return resp.user;
-        } else {
-            return false;
-        }
-    });
-
+class LoginGoogleUser {
+    constructor(email) {
+        this.email = email;
+    }
+    fetchUser = () => {
+        console.log('logging in google user...');
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'get', url: 'http://localhost:8080/checkGoogleUser?email=' + this.email,
+                responseType: 'json'
+            }).then(resp => {
+                console.log('the user data...', resp.data.user);
+                resolve(resp.data.user);
+            });
+        });
+    }
 }
 
 export default LoginGoogleUser;
