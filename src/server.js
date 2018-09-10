@@ -8,6 +8,7 @@ const getBlogList = blog.getBlogList;
 const getCurrentPost = blog.getCurrentPost;
 const getComments = blog.getComments;
 const userSelectPost = blog.userSelectPost;
+const checkGoogleUser = require('./model/checkGoogleUser');
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -30,3 +31,4 @@ app.get('/?postid=:postid', getBlogList, getCurrentPost, getComments);
 app.get('/selectedPost/:postid', userSelectPost);
 app.get('/refreshComments/:postid', refreshComments);
 app.get('*', getBlogList, getCurrentPost, getComments);
+app.get('/checkGoogleUser?email=:email', checkGoogleUser);

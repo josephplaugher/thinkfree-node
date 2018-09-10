@@ -22,5 +22,6 @@ module.exports = {
     ]
   },
   watch: true,
-  mode: 'development'
+  mode: 'development',
+  devtool: 'source-map'
 };
