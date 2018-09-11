@@ -7,12 +7,21 @@ import axios from 'axios';
 class App extends React.Component {
   constructor() {
     super();
-    //this.LoginGoogleUser = this.LoginGoogleUser.bind(this);
-    this.getGoogleUser = this.getGoogleUser.bind(this);
+    this.state = {
+      userData: {},
+    };
   }
-  state = {
-    userData: {},
-  };
+  
+  componentDidMount = () => {
+    if(sessionStorage.getItem('thinkfree-username')) {
+      this.setState({ userData: 
+          {
+          username: sessionStorage.getItem('thinkfree-username'),
+          email: sessionStorage.getItem('thinkfree-email')
+          }
+      });
+    }
+  }
 
   responseGoogle = (googleUser) => {
     var id_token = googleUser.getAuthResponse().id_token;
@@ -31,8 +40,9 @@ class App extends React.Component {
   getGoogleUser = (email) => {
     var Googleuser = new LoginGoogleUser(email);
     let promise = Googleuser.fetchUser();
-      promise.then( (data) => {              
-        console.log('userdata: ',data);
+      promise.then( (data) => {        
+        sessionStorage.setItem('thinkfree-username',data.username);
+        sessionStorage.setItem('thinkfree-email', data.email);
         this.setState({ userData: data});
       });  
   }
@@ -41,9 +51,7 @@ class App extends React.Component {
     return (
       <div>
       {this.state.userData.username ? (
-        <div>
-        <User user={this.state.userData} />
-        </div>
+          <User user={this.state.userData} />
       ) : (
         <div>
         <GoogleLogin socialId="682669909656-oq0efd66585ha1r0e3vvtk6e4oj1mn1r.apps.googleusercontent.com"

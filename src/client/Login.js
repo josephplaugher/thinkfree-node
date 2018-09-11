@@ -17,11 +17,13 @@ class Login extends React.Component {
     if(this.props.userData) {
       this.setState({ loggedIn: true});
     }
+
+    
     
     return (
       <div className="lightbox-background">
         <div className="lighbox">
-          <Form formTitle="Log in to comment"  >
+          <Form formTitle="Log in to comment" >
             <ReadOnlyInput name="email" label="Email" /><br/>
             <Input name="username" label="Username" />
             <div className="buttondiv">

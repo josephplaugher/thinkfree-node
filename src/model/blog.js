@@ -71,6 +71,7 @@ const getComments = function (req, res, next) {
         title: req.latest[0].title,
         description: req.latest[0].description,
         body: req.latest[0].body,
+        postid: req.latest[0].postid,
         blogList: req.markedUplist,
         comments: req.comments
       });
