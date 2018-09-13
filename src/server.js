@@ -3,11 +3,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const csp = require('helmet-csp');
 const blog = require('./model/blog');
-const refreshComments = require('./model/comments');
+const getComments = require('./model/comments');
 const newComment = require('./model/newComment');
 const getBlogList = blog.getBlogList;
 const getCurrentPost = blog.getCurrentPost;
-const getComments = blog.getComments;
 const userSelectPost = blog.userSelectPost;
 const checkGoogleUser = require('./model/checkGoogleUser');
 
@@ -30,9 +29,9 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false })); // Parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // Parse application/json
 
-app.get('/', getBlogList, getCurrentPost, getComments);
-app.get('/?postid=:postid', getBlogList, getCurrentPost, getComments);
+app.get('/', getBlogList, getCurrentPost);
+app.get('/?postid=:postid', getBlogList, getCurrentPost);
 app.get('/selectedPost/:postid', userSelectPost);
-app.get('/refreshComments/:postid', refreshComments);
+app.get('/getComments/:postid', getComments);
 app.post('/newComment', newComment);
 app.get('/checkGoogleUser*', checkGoogleUser);

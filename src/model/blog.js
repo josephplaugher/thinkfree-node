@@ -34,7 +34,7 @@ const getCurrentPost = function (req, res, next) {
   }
 }
 
-const getPostByID = function (req, res, next) {
+const getPostByID = function (req, res) {
   var query = {
     "text":`
       SELECT title, description, body, postid 
@@ -44,10 +44,16 @@ const getPostByID = function (req, res, next) {
   Conn.query(query)
     .then(resp => {
       req.latest = resp.rows;
-      next();
+      res.render('index', {
+        title: req.latest[0].title,
+        description: req.latest[0].description,
+        body: req.latest[0].body,
+        postid: req.latest[0].postid,
+        blogList: req.markedUplist
+      });
     }) 
 }
-
+/*
 const getComments = function (req, res, next) {
   var query = {
     "text":`
@@ -77,6 +83,7 @@ const getComments = function (req, res, next) {
       });
     })
 }
+*/
 
 const userSelectPost = function (req, res) {
   var query = {
@@ -92,4 +99,4 @@ const userSelectPost = function (req, res) {
     .catch(e => console.error('Error: ',e.stack));
 }
 
-module.exports = {getBlogList, getCurrentPost, getPostByID, getComments, userSelectPost};
+module.exports = {getBlogList, getCurrentPost, getPostByID, userSelectPost};

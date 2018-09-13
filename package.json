@@ -25,6 +25,7 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-google-login-component": "^0.9.3",
+    "react-router-dom": "^4.3.1",
     "router-express": "^1.5.2",
     "style-loader": "^0.23.0",
     "vue": "^2.5.17"

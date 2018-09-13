@@ -31,28 +31,16 @@
     <div id="body">
       <%- body %>
     </div>
-    <div id="postid" style="display: none"><%- postid %></div>
-    <div id="comment-container">
-      <div id="login-status">
-        <div id="root"></div>
-      </div>
-      <div id="comments">
-        <%- comments %>
-      </div>
-      <div id="comment-box">
-        <form>
-          <textarea></textarea>
-          <input type="button" value="comment" onclick="submit-comment">
-        </form>
+    <div id="postid" style="display: none">
+      <%- postid %>
+    </div>
+    <div id="bloglist-container">
+      <div id="bloglist">
+        <%- blogList %>
       </div>
     </div>
-  </div>
-  <div id="bloglist-container">
-    <div id="bloglist">
-      <%- blogList %>
-    </div>
-  </div>
-  <script src="javascript/bundle.js"></script>
+    <div id="root"></div>
+    <script src="javascript/bundle.js"></script>
 </body>
 
 </html>

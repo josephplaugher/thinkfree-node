@@ -8,7 +8,7 @@ const newComment = function (req, res) {
             INSERT INTO comments 
             (postid, username, body) 
             VALUES ($1, $2, $3)`,
-        "values":[i.postid, i.username, i.body]}
+        "values":[i.postid, i.username, i.comment]}
       Conn.query(query)
         .then(data => {
             res.status(200).json({ success: data });

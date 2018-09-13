@@ -20,7 +20,6 @@ function selectPost() {
         history.replaceState('','','?postid=' + data.postid); 
         sessionStorage.setItem('thinkfree-postid',data.postid);
         blogElemPositions(data);
-        getComments(data.postid);
       }
     })
 }
@@ -29,17 +28,6 @@ var bloglistItem = document.getElementsByClassName("bloglist");
 
 for (var i = 0; i < bloglistItem.length; i++) {
     bloglistItem[i].addEventListener('click', selectPost, false);
-}
-
-function getComments(blogID) {
-  var comment = new Ajax("refreshComments/"+ blogID ,'');
-  comment.get()
-  .then((res) => {
-    let cl = res.data.comments;
-      document.getElementById('comments').style.color = "black";
-      document.getElementById('comments').style.display = "block";
-      document.getElementById("comments").innerHTML = cl; 
-  });
 }
 
 function blogElemPositions(data) {

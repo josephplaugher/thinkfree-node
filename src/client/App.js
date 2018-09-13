@@ -1,6 +1,7 @@
 import React from 'react';
 import { GoogleLogin } from 'react-google-login-component';
 import User from './User';
+import CommentArea from './CommentArea';
 import LoginGoogleUser from './LoginGoogleUser';
 import axios from 'axios';
 
@@ -9,6 +10,7 @@ class App extends React.Component {
     super();
     this.state = {
       userData: {},
+      postid: sessionStorage.getItem('thinkfree-postid')
     };
   }
   
@@ -50,18 +52,23 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      {this.state.userData.username ? (
-          <User user={this.state.userData} />
-      ) : (
         <div>
-        <GoogleLogin socialId="682669909656-oq0efd66585ha1r0e3vvtk6e4oj1mn1r.apps.googleusercontent.com"
-        className="google-login"
-        scope="profile"
-        fetchBasicProfile={false}
-        responseHandler={this.responseGoogle}
-        buttonText="Sign In To Comment"/>
+          {this.state.userData.username ? (
+            <User user={this.state.userData} />
+          ) : (
+              <div>
+                <GoogleLogin socialId="682669909656-oq0efd66585ha1r0e3vvtk6e4oj1mn1r.apps.googleusercontent.com"
+                  className="google-login"
+                  scope="profile"
+                  fetchBasicProfile={false}
+                  responseHandler={this.responseGoogle}
+                  buttonText="Sign In To Comment" />
+              </div>
+            )}
         </div>
-        )}
+        <div>
+          <CommentArea user={this.state.userData} postid={this.state.postid} />
+        </div>
       </div>
     )
   }

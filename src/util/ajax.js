@@ -23,7 +23,7 @@ Ajax.prototype.post = function(url,formData) {
         data: formData,
         config: { 
             headers: {"Content-Type": "multipart/form-data"}},
-        responseType:'json'})  
+        responseType:'JSON'})  
         request
             .then(result => console.log('ajax firing: '+ result))
             .catch(error => console.log('ajax error: '+ error))
