@@ -16,15 +16,16 @@ const Button = ReactForm.Button;
 class User extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {postid: this.props.postid};
+        this.state = {
+            postid: this.props.postid,
+            comments: []
+        };
         this.watch = this.watch.bind(this);
     }
 
     response = (res) => {
-        console.log('res: ', res);
+        this.updateComments(this.state.postid);
     }
-
-    
 
     updateComments = (postid) => {
         console.log('postid: ', postid);
@@ -32,7 +33,8 @@ class User extends React.Component {
         const ajax = new Ajax("getComments/"+postid,'');
             ajax.get()
             .then(resp => {
-              console.log('comments: ', resp.data.comments);
+                this.setState({comments: resp.data.comments});
+                console.log('comments: ', resp.data.comments);
             })
     }
 
@@ -40,7 +42,6 @@ class User extends React.Component {
         console.log('watch...');
         let oldID = this.state.postid;
         let newID = sessionStorage.getItem('thinkfree-postid');
-       // console.log('old id: ', oldID, 'new id: ', newID);
         if(newID !== oldID) {
             this.setState({postid: newID });
             this.updateComments(newID);
@@ -70,7 +71,7 @@ class User extends React.Component {
                     ) : (null)}
                 </div>
                 <div>
-                    comment area
+                    <CommentList comments={this.state.comments} />
             </div>
             </div>
         )

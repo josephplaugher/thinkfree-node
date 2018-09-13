@@ -30179,7 +30179,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(User).call(this, props));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "response", function (res) {
-      console.log('res: ', res);
+      _this.updateComments(_this.state.postid);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "updateComments", function (postid) {
@@ -30187,6 +30187,10 @@ function (_React$Component) {
 
       var ajax = new _util_ajax__WEBPACK_IMPORTED_MODULE_4__["default"]("getComments/" + postid, '');
       ajax.get().then(function (resp) {
+        _this.setState({
+          comments: resp.data.comments
+        });
+
         console.log('comments: ', resp.data.comments);
       });
     });
@@ -30194,7 +30198,7 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "watch", function () {
       console.log('watch...');
       var oldID = _this.state.postid;
-      var newID = sessionStorage.getItem('thinkfree-postid'); // console.log('old id: ', oldID, 'new id: ', newID);
+      var newID = sessionStorage.getItem('thinkfree-postid');
 
       if (newID !== oldID) {
         _this.setState({
@@ -30210,7 +30214,8 @@ function (_React$Component) {
     });
 
     _this.state = {
-      postid: _this.props.postid
+      postid: _this.props.postid,
+      comments: []
     };
     _this.watch = _this.watch.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
@@ -30236,7 +30241,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Button, {
         id: "submit",
         value: "Enter Comment"
-      }))) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "comment area"));
+      }))) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CommentList__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        comments: this.state.comments
+      })));
     }
   }]);
 
@@ -30292,7 +30299,14 @@ function (_React$Component) {
   _createClass(CommentList, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "comment list"));
+      var comments = this.props.comments.map(function (row) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          key: row.username + "-" + row.commentid
+        }, row.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          key: row.commentid
+        }, row.body));
+      });
+      return comments;
     }
   }]);
 
