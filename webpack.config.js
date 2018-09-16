@@ -21,6 +21,12 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      util: path.resolve(__dirname, 'src/util/'),
+      css: path.resolve(__dirname, 'src/client/css/')
+    }
+  },
   watch: true,
   mode: 'development',
   devtool: 'source-map'

@@ -1,0 +1,83 @@
+#comment-container{
+    margin: auto;
+}
+
+.userLabel {
+    font-weight: bold;
+    font-size: 10px;
+    padding-left: 5px;
+}
+
+.commentBody {
+    font-size: 12px;
+    padding: 15px;
+}
+
+#comment-box {
+    display: none;
+}
+
+#comment{
+    height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    padding: 10px;
+    width: 70%;
+    background-color: grey;
+}
+
+#comment-list {
+    margin-top: 15px;
+    padding: 15px;
+}
+
+.signout-button {
+    cursor: pointer;
+}
+
+.buttondiv{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 70%;
+}
+
+@media screen and (min-width:701px) {
+    #newcomment {
+        height: 100px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        color: white;
+        padding: 10px;
+        width: 70%;
+    }
+
+    #enter-comment {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width:700px){
+    #newcomment {
+        height: 100px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        color: white;
+        padding: 10px;
+    }
+    
+    #enter-comment {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+}

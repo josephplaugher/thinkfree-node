@@ -10,7 +10,7 @@ const checkGoogleUser = (req, res) => {
         "values":[req.query.email]}
       Conn.query(query)
           .then(resp => {
-                if(resp.rows){           
+                if(resp.rows){ 
                     res.status(200).json({ user : resp.rows[0]});
                 }
           }) 

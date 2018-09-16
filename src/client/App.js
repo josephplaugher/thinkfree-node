@@ -9,9 +9,10 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      userData: {},
+      userData: {email: 'testing@test'},
       postid: sessionStorage.getItem('thinkfree-postid')
     };
+    this.logout = this.logout.bind(this);
   }
   
   componentDidMount = () => {
@@ -42,19 +43,34 @@ class App extends React.Component {
   getGoogleUser = (email) => {
     var Googleuser = new LoginGoogleUser(email);
     let promise = Googleuser.fetchUser();
-      promise.then( (data) => {        
-        sessionStorage.setItem('thinkfree-username',data.username);
-        sessionStorage.setItem('thinkfree-email', data.email);
-        this.setState({ userData: data});
+      promise.then( (resp) => {  
+        console.log('getgoogleuser: ', resp.data.user);
+        if(resp.data.user){
+          let User = resp.data.user;
+          sessionStorage.setItem('thinkfree-username',User.username);
+          sessionStorage.setItem('thinkfree-email', User.email);
+          this.setState({ userData: User});
+        }
+        if(typeof resp.data.user === 'undefined'){
+          console.log('set user to new', email);
+          this.setState({ userData: {email: email}});
+        }
       });  
+  }
+
+  logout = () => {
+      console.log('logout');
+      sessionStorage.removeItem('thinkfree-username');
+      sessionStorage.removeItem('thinkfree-email');
+      this.setState({userData: {} });
   }
 
   render() {
     return (
       <div>
-        <div>
-          {this.state.userData.username ? (
-            <User user={this.state.userData} />
+        <div className="login-status">
+          {this.state.userData.email ? (
+            <User user={this.state.userData} logout={this.logout} />
           ) : (
               <div>
                 <GoogleLogin socialId="682669909656-oq0efd66585ha1r0e3vvtk6e4oj1mn1r.apps.googleusercontent.com"

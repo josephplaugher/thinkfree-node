@@ -1,7 +1,7 @@
 import * as ReactForm from 'reactform-appco';
 import React from 'react';
-import './css/form.css'
-import './css/lightbox.css'
+import 'css/form.css'
+import 'css/lightbox.css'
 
 const Form = ReactForm.Form;
 const Input = ReactForm.Input;
@@ -22,7 +22,7 @@ class Login extends React.Component {
     
     return (
       <div className="lightbox-background">
-        <div className="lighbox">
+        <div className="lightbox">
           <Form formTitle="Log in to comment" >
             <ReadOnlyInput name="email" label="Email" /><br/>
             <Input name="username" label="Username" />

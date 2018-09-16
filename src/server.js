@@ -9,6 +9,9 @@ const getBlogList = blog.getBlogList;
 const getCurrentPost = blog.getCurrentPost;
 const userSelectPost = blog.userSelectPost;
 const checkGoogleUser = require('./model/checkGoogleUser');
+const newUser = require('./model/newUser');
+const checkUsername = newUser.checkUsername;
+const setNewUser = newUser.setNewUser;
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -29,9 +32,10 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false })); // Parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // Parse application/json
 
-app.get('/', getBlogList, getCurrentPost);
 app.get('/?postid=:postid', getBlogList, getCurrentPost);
 app.get('/selectedPost/:postid', userSelectPost);
 app.get('/getComments/:postid', getComments);
 app.post('/newComment', newComment);
 app.get('/checkGoogleUser*', checkGoogleUser);
+app.post('/newUser', checkUsername);
+app.get('/', getBlogList, getCurrentPost);

@@ -1,4 +1,4 @@
-import Ajax from './../util/ajax';
+import Ajax from 'util/ajax';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -6,8 +6,9 @@ import App from './App';
 //get the postid of the first blog post that loads if no specific post was in the url
 (function () {
   var id = document.getElementById("postid");
-  sessionStorage.setItem('thinkfree-postid', id.innerHTML);
-  history.replaceState('','','?postid=' + id.innerHTML);; 
+  var url = parseInt(id.innerText);
+  sessionStorage.setItem('thinkfree-postid', url);
+  history.replaceState('','','?postid=' + url);
 })();
 
 function selectPost() {

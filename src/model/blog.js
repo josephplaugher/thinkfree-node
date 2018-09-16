@@ -27,10 +27,16 @@ const getCurrentPost = function (req, res, next) {
       FROM posts  
       ORDER BY postid DESC LIMIT 1`;
     Conn.query(query)
-      .then(resp => {        
-        req.latest = resp.rows;
-        next();
-      }) 
+    .then(resp => {
+      req.latest = resp.rows;
+      res.render('index', {
+        title: req.latest[0].title,
+        description: req.latest[0].description,
+        body: req.latest[0].body,
+        postid: req.latest[0].postid,
+        blogList: req.markedUplist
+      });
+    }) 
   }
 }
 
@@ -53,37 +59,6 @@ const getPostByID = function (req, res) {
       });
     }) 
 }
-/*
-const getComments = function (req, res, next) {
-  var query = {
-    "text":`
-      SELECT commentid, 
-          username, 
-          body 
-      FROM comments
-      WHERE postid=$1 
-      ORDER BY postid DESC`,
-    "values":[req.query.postid]}
-  Conn.query(query)
-    .then(resp => {
-      let comm = '<div>';
-      let data = resp.rows;
-      data.forEach(elem => {
-        comm += '<div id="' + elem.commentid +'" class="commentItem"><p><span class="userLabel">' + elem.username + '</span><br/><span class="commentBody">' + elem.body + '</span></p></div>';
-      });
-      comm += '</div>';
-      req.comments = comm;
-      res.render('index', {
-        title: req.latest[0].title,
-        description: req.latest[0].description,
-        body: req.latest[0].body,
-        postid: req.latest[0].postid,
-        blogList: req.markedUplist,
-        comments: req.comments
-      });
-    })
-}
-*/
 
 const userSelectPost = function (req, res) {
   var query = {

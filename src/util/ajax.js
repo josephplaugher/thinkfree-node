@@ -11,9 +11,6 @@ Ajax.prototype.get = function() {
         responseType:'JSON'
         //headers:{"authorization": "bearer" + sessionStorage.getItem('AppreciateJWT'),"testing":"123"}
         });
-    request
-        .then(result => console.log('ajax firing: '+ result))
-        .catch(error => console.log('ajax error: '+ error))
     return request;
 }
 
@@ -24,9 +21,6 @@ Ajax.prototype.post = function(url,formData) {
         config: { 
             headers: {"Content-Type": "multipart/form-data"}},
         responseType:'JSON'})  
-        request
-            .then(result => console.log('ajax firing: '+ result))
-            .catch(error => console.log('ajax error: '+ error))
     return request;
 }
 
