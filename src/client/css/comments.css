@@ -13,8 +13,8 @@
     padding: 15px;
 }
 
-#comment-box {
-    display: none;
+.comment-box {
+    width: 300px;
 }
 
 #comment{
@@ -29,6 +29,7 @@
 }
 
 #comment-list {
+    clear: both;
     margin-top: 15px;
     padding: 15px;
 }

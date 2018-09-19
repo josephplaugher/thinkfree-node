@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/client/index.js',
@@ -27,7 +28,7 @@ module.exports = {
       css: path.resolve(__dirname, 'src/client/css/')
     }
   },
-  watch: true,
-  mode: 'development',
-  devtool: 'source-map'
+  plugins: [
+    new Dotenv()
+  ]
 };

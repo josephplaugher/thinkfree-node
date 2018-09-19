@@ -45,7 +45,6 @@ class validate {
         let newEr = Object.assign({}, this.error);
         newEr[name] = name + ' is a required field';
         this.error = newEr;
-        console.log('test');
     }
 
     isFloat = (n) => {

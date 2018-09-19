@@ -1,16 +1,15 @@
 import axios from 'axios';
 
 function Ajax(url, formData) {
-    this.url = "http://localhost:8080/" + url;
+    const baseURL = "http://"+ process.env.HOST + ":" + process.env.PORT + "/";
+    this.url = baseURL + url;
     this.formData = formData;
 };
 
 Ajax.prototype.get = function() {
-    //console.log('the token:', sessionStorage.getItem('AppreciateJWT'));
     const request = axios({method: 'get', url: this.url,
         responseType:'JSON'
-        //headers:{"authorization": "bearer" + sessionStorage.getItem('AppreciateJWT'),"testing":"123"}
-        });
+         });
     return request;
 }
 

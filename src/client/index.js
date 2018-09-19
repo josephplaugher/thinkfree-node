@@ -25,6 +25,7 @@ function selectPost() {
     })
 }
 
+document.getElementById('menu-button').addEventListener("click", toggleBlogList);
 var bloglistItem = document.getElementsByClassName("bloglist");
 
 for (var i = 0; i < bloglistItem.length; i++) {
@@ -37,4 +38,13 @@ function blogElemPositions(data) {
   document.getElementById("body").innerHTML = data.body; 
 }
 
+function toggleBlogList() {
+  var e = document.getElementById('bloglist-container');
+  if(e.style.display == 'block' && window.innerWidth < 700)
+     e.style.display = 'none';
+  else
+     e.style.display = 'block';
+}
+
+//render the react portion of the site
 ReactDOM.render(<App />, document.getElementById('root'));

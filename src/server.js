@@ -11,12 +11,11 @@ const userSelectPost = blog.userSelectPost;
 const checkGoogleUser = require('./model/checkGoogleUser');
 const newUser = require('./model/newUser');
 const checkUsername = newUser.checkUsername;
-const setNewUser = newUser.setNewUser;
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-let port = 8080;
+let port = process.env.PORT;
 app.listen(port, function(){
   console.log('server started port ' + port);
 });

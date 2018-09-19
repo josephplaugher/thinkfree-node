@@ -49,15 +49,16 @@ class User extends React.Component {
             postid: sessionStorage.getItem('thinkfree-postid'),
             username: sessionStorage.getItem('thinkfree-username')
         }
+        const url = "http://"+ process.env.HOST + ":" + process.env.PORT + "/newComment";
 
         return (
             <div id="comment-container">
                 <div>
                     {this.props.user.username ? (
-                        <Form formTitle="" action="http://localhost:8080/newComment" response={this.response} extraData={extraData}>
+                        <Form formTitle="" action={url} response={this.response} extraData={extraData}>
                             <TextArea name="comment" label="" className="comment-box"/>
                             <div className="buttondiv">
-                                <Button id="submit" value="Enter Comment" />
+                                <Button id="submit" value="Enter Comment" className="submit-button"/>
                             </div>
                         </Form>
                     ) : (null)}

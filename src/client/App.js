@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      userData: {email: 'testing@test'},
+      userData: {},
       postid: sessionStorage.getItem('thinkfree-postid')
     };
     this.logout = this.logout.bind(this);
@@ -44,7 +44,6 @@ class App extends React.Component {
     var Googleuser = new LoginGoogleUser(email);
     let promise = Googleuser.fetchUser();
       promise.then( (resp) => {  
-        console.log('getgoogleuser: ', resp.data.user);
         if(resp.data.user){
           let User = resp.data.user;
           sessionStorage.setItem('thinkfree-username',User.username);
@@ -52,14 +51,12 @@ class App extends React.Component {
           this.setState({ userData: User});
         }
         if(typeof resp.data.user === 'undefined'){
-          console.log('set user to new', email);
           this.setState({ userData: {email: email}});
         }
       });  
   }
 
   logout = () => {
-      console.log('logout');
       sessionStorage.removeItem('thinkfree-username');
       sessionStorage.removeItem('thinkfree-email');
       this.setState({userData: {} });
@@ -78,7 +75,8 @@ class App extends React.Component {
                   scope="profile"
                   fetchBasicProfile={false}
                   responseHandler={this.responseGoogle}
-                  buttonText="Sign In To Comment" />
+                  buttonText="Sign In To Comment" 
+                  className="submit-button"/>
               </div>
             )}
         </div>
