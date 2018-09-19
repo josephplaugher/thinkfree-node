@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"npm run build:dev\" \"npm run start-server\"",
-    "build": "concurrently \"npm run build:prod\" \"npm run start-server\"",
+    "start": "concurrently \"npm run build:dev\" \"npm run start-server:dev\"",
+    "build": "npm run build:prod && npm run start-server:prod",
     "build:dev": "webpack --config webpack-dev.config.js",
     "build:prod": "webpack --config webpack-prod.config.js",
-    "start-server": "nodemon src/server.js --exec 'node -r dotenv/config'"
+    "start-server:dev": "nodemon src/server.js --exec 'node -r dotenv/config'",
+    "start-server:prod": "forever start forever-config.json"
   },
   "author": "Friedman Smith",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "dotenv-webpack": "^1.5.7",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
+    "forever": "^0.15.3",
     "helmet-csp": "^2.7.1",
     "install": "^0.12.1",
     "pg": "^7.4.3",
