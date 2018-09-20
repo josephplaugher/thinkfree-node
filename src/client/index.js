@@ -16,12 +16,11 @@ function selectPost() {
   var post = new Ajax("selectedPost/"+ id ,'');
   post.get()
     .then((res) => {
-      if(res.data.postdata){
         let data = res.data.postdata;
         history.replaceState('','','?postid=' + data.postid); 
         sessionStorage.setItem('thinkfree-postid',data.postid);
         blogElemPositions(data);
-      }
+        toggleBlogList();
     })
 }
 
