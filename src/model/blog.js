@@ -68,7 +68,7 @@ const userSelectPost = function (req, res) {
     "text":`
       SELECT title, description, body, postid 
       FROM posts 
-      WHERE postid=$1`,
+      WHERE postid=$1 `,
     "values":[req.params.postid]}
   Conn.query(query)
     .then(resp => {
