@@ -3,10 +3,7 @@ const Conn = require('./../util/postgres');
 const getBlogList = function (req, res, next) {
   Conn.query(`
     SELECT title, description, postid 
-    FROM posts 
-    WHERE published = 'true'
-    ORDER BY postid DESC
-  `)
+    FROM posts WHERE published = 'true' ORDER BY postid DESC`)
     .then(resp => {
       let list = '';
       let data = resp.rows;
@@ -26,8 +23,7 @@ const getCurrentPost = function (req, res, next) {
     let query = `
       SELECT title, description, body, postid 
       FROM posts  
-      WHERE published = 'true'
-      ORDER BY postid DESC LIMIT 1`;
+      WHERE published = 'true' ORDER BY postid DESC LIMIT 1`;
     Conn.query(query)
     .then(resp => {
       req.latest = resp.rows;
