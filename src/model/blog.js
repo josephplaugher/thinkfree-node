@@ -4,6 +4,7 @@ const getBlogList = function (req, res, next) {
   Conn.query(`
     SELECT title, description, postid 
     FROM posts 
+    WHERE published = 'true'
     ORDER BY postid DESC
   `)
     .then(resp => {
@@ -25,6 +26,7 @@ const getCurrentPost = function (req, res, next) {
     let query = `
       SELECT title, description, body, postid 
       FROM posts  
+      WHERE published = 'true'
       ORDER BY postid DESC LIMIT 1`;
     Conn.query(query)
     .then(resp => {
@@ -45,7 +47,8 @@ const getPostByID = function (req, res) {
     "text":`
       SELECT title, description, body, postid 
       FROM posts 
-      WHERE postid=$1`,
+      WHERE postid=$1
+      AND published = 'true'`,
     "values":[req.query.postid]}
   Conn.query(query)
     .then(resp => {
