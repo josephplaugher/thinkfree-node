@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 });
 
 app.use(bodyParser.urlencoded({ extended: false })); // Parse application/x-www-form-urlencoded
-app.use(bodyParser.json()); // Parse application/json
+app.use(bodyParser.json()); // Parse application/json data
 
 app.get('/?postid=:postid', getBlogList, getCurrentPost);
 app.get('/selectedPost/:postid', userSelectPost);
