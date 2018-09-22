@@ -1,9 +1,7 @@
 const Conn = require('./../util/postgres');
 
 const getBlogList = function (req, res, next) {
-  Conn.query(`
-    SELECT title, description, postid 
-    FROM posts WHERE published = 'true' ORDER BY postid DESC`)
+  Conn.query("SELECT title, description, postid FROM posts WHERE published = 'true' ORDER BY postid DESC")
     .then(resp => {
       let list = '';
       let data = resp.rows;
@@ -20,10 +18,7 @@ const getCurrentPost = function (req, res, next) {
   if(req.query.postid) { 
     module.exports.getPostByID(req, res, next);
   }else{
-    let query = `
-      SELECT title, description, body, postid 
-      FROM posts  
-      WHERE published = 'true' ORDER BY postid DESC LIMIT 1`;
+    let query = "SELECT title, description, body, postid FROM posts WHERE published = 'true' ORDER BY postid DESC LIMIT 1";
     Conn.query(query)
     .then(resp => {
       req.latest = resp.rows;
@@ -40,11 +35,7 @@ const getCurrentPost = function (req, res, next) {
 
 const getPostByID = function (req, res) {
   var query = {
-    "text":`
-      SELECT title, description, body, postid 
-      FROM posts 
-      WHERE postid=$1
-      AND published = 'true'`,
+    "text":"SELECT title, description, body, postid FROM posts WHERE postid=$1 AND published = 'true'",
     "values":[req.query.postid]}
   Conn.query(query)
     .then(resp => {
@@ -61,10 +52,7 @@ const getPostByID = function (req, res) {
 
 const userSelectPost = function (req, res) {
   var query = {
-    "text":`
-      SELECT title, description, body, postid 
-      FROM posts 
-      WHERE postid=$1 `,
+    "text":"SELECT title, description, body, postid FROM posts WHERE postid=$1 ",
     "values":[req.params.postid]}
   Conn.query(query)
     .then(resp => {
