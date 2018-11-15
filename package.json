@@ -9,8 +9,8 @@
     "build": "npm run build:prod && npm run start-server:prod",
     "build:dev": "webpack --config webpack-dev.config.js",
     "build:prod": "webpack --config webpack-prod.config.js",
-    "start-server:dev": "nodemon src/server.js --exec 'node -r dotenv/config'",
-    "start-server:prod": "forever start forever-config.json"
+    "start-server:dev": "NODE_ENV=development nodemon src/server.js --exec 'node -r dotenv/config'",
+    "start-server:prod": "NODE_ENV=production forever start forever-config.json"
   },
   "author": "Friedman Smith",
   "license": "ISC",
@@ -23,7 +23,6 @@
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "forever": "^0.15.3",
-    "helmet-csp": "^2.7.1",
     "install": "^0.12.1",
     "pg": "^7.4.3",
     "react": "^16.4.2",
@@ -31,7 +30,8 @@
     "react-google-login-component": "^0.9.3",
     "react-router-dom": "^4.3.1",
     "reactform-appco": "^1.0.0",
-    "router-express": "^1.5.2"
+    "router-express": "^1.5.2",
+    "winston": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

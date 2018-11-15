@@ -1,7 +1,9 @@
 const Conn = require('./../util/postgres');
+const log = require('./../util/Logger');
 
 const getBlogList = function (req, res, next) {
   Conn.query("SELECT title, description, postid FROM posts WHERE published = 'true' ORDER BY postid DESC")
+    .catch(e => { log(e, 'blog.js')})
     .then(resp => {
       let list = '';
       let data = resp.rows;
@@ -20,6 +22,7 @@ const getCurrentPost = function (req, res, next) {
   }else{
     let query = "SELECT title, description, body, postid FROM posts WHERE published = 'true' ORDER BY postid DESC LIMIT 1";
     Conn.query(query)
+    .catch(e => { log(e, 'blog.js')})
     .then(resp => {
       req.latest = resp.rows;
       res.render('index', {
@@ -38,6 +41,7 @@ const getPostByID = function (req, res) {
     "text":"SELECT title, description, body, postid FROM posts WHERE postid=$1 AND published = 'true'",
     "values":[req.query.postid]}
   Conn.query(query)
+    .catch(e => { log(e, 'blog.js')})
     .then(resp => {
       req.latest = resp.rows;
       res.render('index', {
@@ -55,6 +59,7 @@ const userSelectPost = function (req, res) {
     "text":"SELECT title, description, body, postid FROM posts WHERE postid=$1 ",
     "values":[req.params.postid]}
   Conn.query(query)
+    .catch(e => { log(e, 'blog.js')})
     .then(resp => {
       res.status(200).json({ postdata:resp.rows[0] });
     }) 

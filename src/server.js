@@ -2,7 +2,6 @@ const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const csp = require('helmet-csp');
 const blog = require('./model/blog');
 const getComments = require('./model/comments');
 const newComment = require('./model/newComment');
@@ -18,7 +17,7 @@ app.set('view engine', 'ejs');
 
 let port = process.env.PORT;
 app.listen(port, function(){
-  console.log('server started port ' + port);
+  console.log(process.env.NODE_ENV + ' mode, server started port ' + port);
 });
 
 app.use((req, res, next) => {
