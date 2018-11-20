@@ -10,7 +10,9 @@ const getCurrentPost = blog.getCurrentPost;
 const userSelectPost = blog.userSelectPost;
 const checkGoogleUser = require('./model/checkGoogleUser');
 const newUser = require('./model/newUser');
+const SignIn = require('./model/SignIn');
 const checkUsername = newUser.checkUsername;
+//**bypassing the password check on sign in! Bcrypt is having trouble. Fix it when on wifi!!!! */
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -37,4 +39,8 @@ app.get('/getComments/:postid', getComments);
 app.post('/newComment', newComment);
 app.get('/checkGoogleUser*', checkGoogleUser);
 app.post('/newUser', checkUsername);
+app.post('/signIn', (req, res) => {
+  const signin = new SignIn(req, res);
+  signin.login();
+});
 app.get('/', getBlogList, getCurrentPost);

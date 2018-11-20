@@ -1,4 +1,6 @@
 const Conn = require('./../util/postgres');
+const bcrypt = require('bcryptjs');
+const log = require('./../util/Logger');
 
 const checkUsername = (req, res) => {
     if(req.body.username === 'null' || typeof req.body.username === 'undefined' || req.body.username === '') {
@@ -10,7 +12,8 @@ const checkUsername = (req, res) => {
         FROM users WHERE username = $1`,
         "values":[req.body.username]}
       Conn.query(query)
-          .then(result => {
+        .catch(e => { log(e, 'newUser.js')})
+        .then(result => {
                 if(result.rowCount > 0){ 
                     res.status(200).json({ error : {username:"That username is taken. Please choose something else"}} );
                 }else{
@@ -21,17 +24,20 @@ const checkUsername = (req, res) => {
 }
 
 const setNewUser = (req, res) => {
+    var password = bcrypt.hashSync(req.body.password, 14);
     var query = {
         "text": `
         INSERT into users (
             username, 
-            email)
-        VALUES ($1, $2)`,
-        "values": [req.body.username, req.body.email]
+            email,
+            password)
+        VALUES ($1, $2, $3)`,
+        "values": [req.body.username, req.body.email, password]
     }
     Conn.query(query)
+        .catch(e => { log(e, 'newUser.js')})
         .then(result => {
-            res.status(200).json({ success: true, user:{username: req.body.username, email: req.body.email} });
+            res.status(200).json({ success: true, userData:{username: req.body.username, email: req.body.email} });
         });
 }
 

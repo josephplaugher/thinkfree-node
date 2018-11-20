@@ -1,18 +1,29 @@
 import React from 'react';
+import * as ReactForm from 'reactform-appco'
 import { GoogleLogin } from 'react-google-login-component';
 import User from './User';
 import CommentArea from './CommentArea';
 import LoginGoogleUser from './LoginGoogleUser';
 import axios from 'axios';
 
+const Form = ReactForm.Form;
+const Input = ReactForm.Input;
+const Button = ReactForm.Button;
+
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       userData: {},
+      showForm: false,
+      authForm: '',
+      nativeUser: true,
       postid: sessionStorage.getItem('thinkfree-postid')
     };
     this.logout = this.logout.bind(this);
+    this.getGoogleUser = this.getGoogleUser.bind(this);
+    this.getNativeUser = this.getNativeUser.bind(this);
+    this.signInResponse = this.signInResponse.bind(this);
   }
   
   componentDidMount = () => {
@@ -51,9 +62,39 @@ class App extends React.Component {
           this.setState({ userData: User});
         }
         if(typeof resp.data.user === 'undefined'){
+          this.setState({ userData: {email: email}, showForm: true, authForm: 'google'});
+        }
+      });  
+  }
+
+  getNativeUser = (email) => {
+    var Googleuser = new LoginGoogleUser(email);
+    let promise = Googleuser.fetchUser();
+      promise.then( (resp) => {  
+        if(resp.data.user){
+          let User = resp.data.user;
+          sessionStorage.setItem('thinkfree-username',User.username);
+          sessionStorage.setItem('thinkfree-email', User.email);
+          this.setState({ userData: User});
+        }
+        if(typeof resp.data.user === 'undefined'){
           this.setState({ userData: {email: email}});
         }
       });  
+  }
+
+  signInResponse = (resp) => {
+    console.log('resp: ' , resp)
+    if (resp.success) {
+        this.setState({ 
+          userData: resp.userData,
+          showForm: false,
+         });
+    }
+}
+
+  closeUserForm = () => {
+    this.setState({showForm: false});
   }
 
   logout = () => {
@@ -66,18 +107,31 @@ class App extends React.Component {
     return (
       <div>
         <div className="login-status">
-          {this.state.userData.email ? (
-            <User user={this.state.userData} logout={this.logout} />
+          {this.state.userData.email || this.state.showForm ? (
+            <User user={this.state.userData} 
+              signInResponse={this.signInResponse}
+              authForm={this.state.authForm} 
+              logout={this.logout}
+              close={this.closeUserForm.bind(this)}
+            />
           ) : (
+            <div>
               <div>
+                {/* //turning off google login for now
                 <GoogleLogin socialId="682669909656-oq0efd66585ha1r0e3vvtk6e4oj1mn1r.apps.googleusercontent.com"
                   className="google-login"
                   scope="profile"
                   fetchBasicProfile={false}
                   responseHandler={this.responseGoogle}
-                  buttonText="Sign In To Comment" 
+                  buttonText="Sign In With Google To Comment" 
                   className="submit-button"/>
+                  */}
               </div>
+              <div>
+                <Button id="native-login" value="Sign In To Comment" onClick={() => { this.setState({showForm: true, authForm: 'sign-in'}) }} />
+                <Button id="native-signup" value="Create Username To Comment" onClick={() => { this.setState({showForm: true, authForm: 'new-user'}) }} />
+              </div>
+            </div>
             )}
         </div>
         <div>
