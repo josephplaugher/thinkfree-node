@@ -12,7 +12,8 @@ const checkGoogleUser = require('./model/checkGoogleUser');
 const newUser = require('./model/newUser');
 const SignIn = require('./model/SignIn');
 const checkUsername = newUser.checkUsername;
-//**bypassing the password check on sign in! Bcrypt is having trouble. Fix it when on wifi!!!! */
+const nodemailer = require('nodemailer');
+const email = require('./model/email');
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -44,3 +45,8 @@ app.post('/signIn', (req, res) => {
   signin.login();
 });
 app.get('/', getBlogList, getCurrentPost);
+/*
+app.get('/mail', (req, res) => {
+  email(req, res);
+})
+*/
