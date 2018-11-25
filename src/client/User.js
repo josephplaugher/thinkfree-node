@@ -24,7 +24,7 @@ class User extends React.Component {
                         <div className="lightbox-background">
                             <div className="lightbox">
                             <span className="close-button" onClick={this.props.close}>x</span>
-                                <div className="form-container">
+                                <div>
                                     {this.props.authForm === 'sign-in' ? ( <SignIn response={this.props.signInResponse}/> )
                                     : this.props.authForm === 'new-user' ? ( <NewUser url={url} response={this.props.signInResponse}/> )
                                     : this.props.authForm === 'google' ? ( <GoogleAuth url={url} response={this.props.signInResponse}/> ) 
