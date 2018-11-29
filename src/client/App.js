@@ -15,6 +15,7 @@ class App extends React.Component {
     super();
     this.state = {
       userData: {},
+      userNotify: '',
       showForm: false,
       authForm: '',
       nativeUser: true,
@@ -88,8 +89,11 @@ class App extends React.Component {
     if (resp.success) {
         this.setState({ 
           userData: resp.userData,
+          userNotify: resp.userNotify,
           showForm: false,
          });
+    } else {
+      this.setState({ userNotify: resp.userNotify})
     }
 }
 
@@ -110,6 +114,7 @@ class App extends React.Component {
           {this.state.userData.email || this.state.showForm ? (
             <User user={this.state.userData} 
               signInResponse={this.signInResponse}
+              userNotify={this.state.userNotify}
               authForm={this.state.authForm} 
               logout={this.logout}
               close={this.closeUserForm.bind(this)}
@@ -117,7 +122,7 @@ class App extends React.Component {
           ) : (
             <div>
               <div>
-                {/* //turning off google login for now
+                 {/*//turning off google login for now
                 <GoogleLogin socialId="682669909656-oq0efd66585ha1r0e3vvtk6e4oj1mn1r.apps.googleusercontent.com"
                   className="google-login"
                   scope="profile"
@@ -128,8 +133,8 @@ class App extends React.Component {
                   */}
               </div>
               <div>
-                <Button id="native-login" value="Sign In To Comment" onClick={() => { this.setState({showForm: true, authForm: 'sign-in'}) }} />
-                <Button id="native-signup" value="Create Username To Comment" onClick={() => { this.setState({showForm: true, authForm: 'new-user'}) }} />
+                <Button id="native-login" value="Sign In To Comment" className="submit-button" onClick={() => { this.setState({showForm: true, authForm: 'sign-in'}) }} />
+                <Button id="native-signup" value="Create Username To Comment" className="submit-button" onClick={() => { this.setState({showForm: true, authForm: 'new-user'}) }} />
               </div>
             </div>
             )}

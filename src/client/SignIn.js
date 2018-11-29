@@ -14,23 +14,12 @@ class SignIn extends React.Component {
         this.state = { user: {} };
     }
 
-    response = (resp) => {
-        if (resp.success) {
-            this.setState({ user: resp.user });
-        }
-    }
-
-    componentWillMount = () => {
-        this.setState({
-            user: this.props.user
-        });
-    }
-
     render() {
         const url = process.env.BASE_URL + "/signIn";
 
         return (
             <div>
+                <p className="input-error">{this.props.userNotify}</p>
                 <Form formTitle="Sign In"
                     action={url}
                     response={this.props.response}

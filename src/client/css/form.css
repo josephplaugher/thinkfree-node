@@ -53,9 +53,8 @@
 }
 
 .input-error {
-    position: absolute;
+    font-size: 10px;
     color: red;
-    margin-top: 45px;
     width: 200px;
     word-wrap: break-word;
 }
