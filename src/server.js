@@ -2,6 +2,7 @@ const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const log = require('./util/Logger');
 const blog = require('./model/blog');
 const getComments = require('./model/comments');
 const newComment = require('./model/newComment');
@@ -20,7 +21,9 @@ app.set('view engine', 'ejs');
 
 let port = process.env.PORT;
 app.listen(port, function(){
-  console.log(process.env.NODE_ENV + ' mode, server started port ' + port);
+  var msg = 'server started in '+ process.env.NODE_ENV + ' mode on port ' + port;
+  console.log(msg);
+  if(process.env.NODE_ENV === 'production') { log('',msg); }
 });
 
 app.use((req, res, next) => {
@@ -45,8 +48,3 @@ app.post('/signIn', (req, res) => {
   signin.login();
 });
 app.get('/', getBlogList, getCurrentPost);
-/*
-app.get('/mail', (req, res) => {
-  email(req, res);
-})
-*/
