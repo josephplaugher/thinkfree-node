@@ -1,14 +1,10 @@
 import React from 'react';
-import * as ReactForm from 'reactform-appco'
+import {Form, Input, Button} from 'reactform-appco';
 import { GoogleLogin } from 'react-google-login-component';
 import User from './User';
 import CommentArea from './CommentArea';
 import LoginGoogleUser from './LoginGoogleUser';
 import axios from 'axios';
-
-const Form = ReactForm.Form;
-const Input = ReactForm.Input;
-const Button = ReactForm.Button;
 
 class App extends React.Component {
   constructor() {

@@ -1,12 +1,8 @@
 import React from 'react';
-import * as ReactForm from 'reactform-appco';
+import {Form, Input, Button} from 'reactform-appco';
 import ValRules from 'util/ValRules'
 import 'css/lightbox.css';
 import 'css/form.css';
-
-const Form = ReactForm.Form;
-const Input = ReactForm.Input;
-const Button = ReactForm.Button;
 
 class GoogleAuth extends React.Component {
     constructor(props) {

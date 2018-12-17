@@ -1,3 +1,4 @@
+import SetUrl from './util/SetUrl';
 import Ajax from 'util/ajax';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -13,7 +14,7 @@ import App from './App';
 
 function selectPost() {
   let id = this.getAttribute("id");
-  var post = new Ajax("selectedPost/"+ id ,'');
+  var post = new Ajax(SetUrl() + "selectedPost/"+ id ,'');
   post.get()
     .then((res) => {
         let data = res.data.postdata;

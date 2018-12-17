@@ -1,12 +1,9 @@
 import React from 'react';
-import * as ReactForm from 'reactform-appco';
+import {Form, Input, Button} from 'reactform-appco';
 import Ajax from 'util/ajax';
+import SetUrl from './util/SetUrl';
 import CommentList from './CommentList';
 import 'css/comments.css'
-
-const Form = ReactForm.Form;
-const TextArea = ReactForm.TextArea;
-const Button = ReactForm.Button;
 
 class User extends React.Component {
     constructor(props) {
@@ -49,7 +46,8 @@ class User extends React.Component {
             postid: sessionStorage.getItem('thinkfree-postid'),
             username: sessionStorage.getItem('thinkfree-username')
         }
-        const url = "http://"+ process.env.HOST + ":" + process.env.PORT + "/newComment";
+
+        const url = SetUrl();
 
         return (
             <div id="comment-container">

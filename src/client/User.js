@@ -2,6 +2,7 @@ import React from 'react';
 import GoogleAuth from './GoogleAuth'
 import SignIn from './SignIn'
 import NewUser from './NewUser'
+import SetUrl from './util/SetUrl'
 import 'css/lightbox.css';
 import 'css/form.css';
 
@@ -12,8 +13,8 @@ class User extends React.Component {
     }
 
     render() {
-        const url = process.env.BASE_URL + "/newUser";
-
+        const url = SetUrl();
+        
         return (
             <div>
             {this.props.user.username ? (
