@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form, Input, Button} from 'reactform-appco';
-import Ajax from 'util/ajax';
+import Ajax from './util/Ajax';
 import SetUrl from './util/SetUrl';
 import CommentList from './CommentList';
 import 'css/comments.css'
@@ -20,8 +20,7 @@ class User extends React.Component {
     }
 
     updateComments = (postid) => {
-        const ajax = new Ajax("getComments/"+postid,'');
-            ajax.get()
+        Ajax.get(SetUrl() + "/getComments/" + postid)
             .then(resp => {
                 this.setState({comments: resp.data.comments});
             })
@@ -47,13 +46,11 @@ class User extends React.Component {
             username: sessionStorage.getItem('thinkfree-username')
         }
 
-        const url = SetUrl();
-
         return (
             <div id="comment-container">
                 <div>
                     {this.props.user.username ? (
-                        <Form formTitle="" action={url} response={this.response} extraData={extraData}>
+                        <Form formTitle="" action={SetUrl()} response={this.response} extraData={extraData}>
                             <TextArea name="comment" label="" className="comment-box"/>
                             <div className="buttondiv">
                                 <Button id="submit" value="Enter Comment" className="submit-button"/>
