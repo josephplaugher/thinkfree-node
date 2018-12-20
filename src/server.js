@@ -13,6 +13,7 @@ const checkGoogleUser = require('./model/checkGoogleUser');
 const newUser = require('./model/newUser');
 const SignIn = require('./model/SignIn');
 const checkUsername = newUser.checkUsername;
+const updateSubscribed = require('./model/updateSubscribed');
 const nodemailer = require('nodemailer');
 const email = require('./model/email');
 
@@ -46,4 +47,5 @@ app.post('/signIn', (req, res) => {
   const signin = new SignIn(req, res);
   signin.login();
 });
+app.post('/updateSubscribed', updateSubscribed);
 app.get('/', getBlogList, getCurrentPost);

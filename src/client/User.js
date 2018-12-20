@@ -2,16 +2,27 @@ import React from 'react';
 import GoogleAuth from './GoogleAuth'
 import SignIn from './SignIn'
 import NewUser from './NewUser'
+import UserMenu from './UserMenu'
 import SetUrl from './util/SetUrl'
 import 'css/lightbox.css';
 import 'css/form.css';
+import 'css/usermenu.css';
 
 class User extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {showUserMenu: false};
+        this.showUserMenu = this.showUserMenu.bind(this);
+        this.hideUserMenu = this.hideUserMenu.bind(this);
     }
 
+    showUserMenu = () => {
+        this.setState({showUserMenu: true});
+    }
+
+    hideUserMenu = () => {
+        this.setState({showUserMenu: false});
+    }
     render() {
         const url = SetUrl();
         
@@ -19,7 +30,24 @@ class User extends React.Component {
             <div>
             {this.props.user.username ? (
                 <div>
-                    <p id="userstate">Signed in as {this.props.user.username} <span className="signout-button" onClick={this.props.logout} >(Sign Out)</span></p>
+                    <div>
+                        <p id="userstate" className="user-menu-area">Signed in as {this.props.user.username}</p>
+                        <div id="user-menu-button" className="user-menu-area" onClick={this.showUserMenu}>
+                            <div class="user-menu-bar"></div>
+                            <div class="user-menu-bar"></div>
+                        </div>
+                    </div>
+             
+                    {this.state.showUserMenu ? (
+                        <div>
+                        <UserMenu 
+                            hideMenu={this.hideUserMenu}
+                            logout={this.props.logout}
+                            user={this.props.user}
+                            updateSubscribed={this.props.updateSubscribed}
+                        />
+                        </div>
+                    ) : (null)}
                 </div>
             ) : (
             <div className="lightbox-background">

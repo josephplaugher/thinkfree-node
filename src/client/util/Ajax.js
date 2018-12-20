@@ -6,7 +6,7 @@ const get = (url) => {
         url: url,
         config: {
             headers: {
-                "Authorization": sessionStorage.getItem('thinkfree-jwt')
+                "Content-Type": "multipart/form-data"
             }
         },
         responseType: 'JSON'
@@ -18,13 +18,12 @@ const get = (url) => {
 }
 
 const post = (url, formData) => {
-    request = axios({
+    const request = axios({
         url: url,
         method: 'post',
         data: formData,
         config: {
             headers: {
-                "Authorization": sessionStorage.getItem('thinkfree-jwt'),
                 "Content-Type": "multipart/form-data"
             }
         },

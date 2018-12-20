@@ -4,7 +4,8 @@ import { GoogleLogin } from 'react-google-login-component';
 import User from './User';
 import CommentArea from './CommentArea';
 import LoginGoogleUser from './LoginGoogleUser';
-import axios from 'axios';
+import Ajax from './util/Ajax';
+import SetUrl from './util/SetUrl';
 
 class App extends React.Component {
   constructor() {
@@ -19,8 +20,9 @@ class App extends React.Component {
     };
     this.logout = this.logout.bind(this);
     this.getGoogleUser = this.getGoogleUser.bind(this);
-    this.getNativeUser = this.getNativeUser.bind(this);
+   // this.getNativeUser = this.getNativeUser.bind(this);
     this.signInResponse = this.signInResponse.bind(this);
+    this.updateSubscribed = this.updateSubscribed.bind(this);
   }
   
   componentDidMount = () => {
@@ -28,7 +30,8 @@ class App extends React.Component {
       this.setState({ userData: 
           {
           username: sessionStorage.getItem('thinkfree-username'),
-          email: sessionStorage.getItem('thinkfree-email')
+          email: sessionStorage.getItem('thinkfree-email'),
+          subscribed: sessionStorage.getItem('thinkfree-sub')
           }
       });
     }
@@ -36,13 +39,11 @@ class App extends React.Component {
 
   responseGoogle = (googleUser) => {
     var id_token = googleUser.getAuthResponse().id_token;
-      axios({
-        method: 'get', url: 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token='+id_token,
-        responseType: 'json'
-      }).then(resp => {
-        if(resp.data.email_verified) {
-          this.getGoogleUser(resp.data.email);          
-        }else{
+    Ajax.get('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + id_token)
+      .then(resp => {
+        if (resp.data.email_verified) {
+          this.getGoogleUser(resp.data.email);
+        } else {
           alert(`Google says your email addres has not been verified. Please correct this and try again.`);
         }
       });
@@ -56,6 +57,7 @@ class App extends React.Component {
           let User = resp.data.user;
           sessionStorage.setItem('thinkfree-username',User.username);
           sessionStorage.setItem('thinkfree-email', User.email);
+          sessionStorage.setItem('thinkfree-sub', User.subscribed);
           this.setState({ userData: User});
         }
         if(typeof resp.data.user === 'undefined'){
@@ -63,6 +65,7 @@ class App extends React.Component {
         }
       });  
   }
+  /*
 
   getNativeUser = (email) => {
     var Googleuser = new LoginGoogleUser(email);
@@ -72,6 +75,7 @@ class App extends React.Component {
           let User = resp.data.user;
           sessionStorage.setItem('thinkfree-username',User.username);
           sessionStorage.setItem('thinkfree-email', User.email);
+          sessionStorage.setItem('thinkfree-sub', User.subscribed);
           this.setState({ userData: User});
         }
         if(typeof resp.data.user === 'undefined'){
@@ -79,14 +83,18 @@ class App extends React.Component {
         }
       });  
   }
-
+*/
   signInResponse = (resp) => {
     if (resp.success) {
         this.setState({ 
           userData: resp.userData,
           userNotify: resp.userNotify,
+          subscribed: true,
           showForm: false,
          });
+        sessionStorage.setItem('thinkfree-username', resp.userData.username);
+        sessionStorage.setItem('thinkfree-email', resp.userData.email);
+        sessionStorage.setItem('thinkfree-sub', resp.userData.subscribed);
     } else {
       this.setState({ userNotify: resp.userNotify})
     }
@@ -99,8 +107,34 @@ class App extends React.Component {
   logout = () => {
       sessionStorage.removeItem('thinkfree-username');
       sessionStorage.removeItem('thinkfree-email');
+      sessionStorage.removeItem('thinkfree-sub');
       this.setState({userData: {} });
   }
+
+  updateSubscribed = () => {
+    console.log('change subscribe')
+    if(this.state.userData.subscribed === true) {
+        let data = {email: this.state.userData.email, subscribe: false}
+        Ajax.post(SetUrl() + "/updateSubscribed", data)
+        .then( res => {
+            let newUserData = Object.assign({}, this.state.userData);
+            newUserData.subscribed = false;
+            this.setState({userData: newUserData})
+            sessionStorage.setItem('thinkfree-sub', 'false');
+        })
+    
+    } else {
+        let data = {email: this.state.userData.email, subscribe: true}
+        Ajax.post(SetUrl() + "/updateSubscribed", data)
+        .then( res => {
+          let newUserData = Object.assign({}, this.state.userData);
+          newUserData.subscribed = true;
+          this.setState({userData: newUserData})
+          sessionStorage.setItem('thinkfree-sub', 'true');
+        })
+    }
+    
+}
 
   render() {
     return (
@@ -113,6 +147,7 @@ class App extends React.Component {
               authForm={this.state.authForm} 
               logout={this.logout}
               close={this.closeUserForm.bind(this)}
+              updateSubscribed={this.updateSubscribed}
             />
           ) : (
             <div>

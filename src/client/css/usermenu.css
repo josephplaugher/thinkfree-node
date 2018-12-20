@@ -1,0 +1,17 @@
+#user-menu-button {
+    clear: left;
+    margin-left: 20px;
+    cursor: pointer;
+    background-color:#2665C4;
+}
+
+.user-menu-bar {
+    width: 20px;
+    height: 3px;
+    background-color:white;
+    margin: 3px 0;
+}
+
+.user-menu-area {
+    display: inline-block;
+}
