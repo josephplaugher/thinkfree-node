@@ -22,7 +22,6 @@ app.set('view engine', 'ejs');
 let port = process.env.PORT;
 app.listen(port, function(){
   var msg = 'server started in '+ process.env.NODE_ENV + ' mode on port ' + port;
-  console.log(msg);
   if(process.env.NODE_ENV === 'production') { log('',msg); }
 });
 

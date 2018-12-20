@@ -81,7 +81,6 @@ class App extends React.Component {
   }
 
   signInResponse = (resp) => {
-    console.log('resp: ' , resp)
     if (resp.success) {
         this.setState({ 
           userData: resp.userData,

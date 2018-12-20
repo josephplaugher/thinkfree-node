@@ -15,7 +15,7 @@ class NewUser extends React.Component {
         return (
             <div>
                 <Form formTitle="Create Username"
-                    action={this.props.url}
+                    action={this.props.url + "/newUser"}
                     response={this.props.response}
                     valrules={ValRules} >
                     <Input name="username" label="User name" className="textinput" labelClass="label" errorClass="input-error" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Input, Button} from 'reactform-appco';
+import {Form, Input, Button, TextArea} from 'reactform-appco';
 import Ajax from './util/Ajax';
 import SetUrl from './util/SetUrl';
 import CommentList from './CommentList';

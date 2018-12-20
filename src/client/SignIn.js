@@ -1,6 +1,7 @@
 import React from 'react';
 import * as ReactForm from 'reactform-appco';
 import ValRules from 'util/ValRules'
+import SetUrl from './util/SetUrl'
 import 'css/lightbox.css';
 import 'css/form.css';
 
@@ -15,7 +16,7 @@ class SignIn extends React.Component {
     }
 
     render() {
-        const url = process.env.BASE_URL + "/signIn";
+        const url = SetUrl() + "/signIn";
 
         return (
             <div>
@@ -27,7 +28,7 @@ class SignIn extends React.Component {
                     <Input name="email" label="Email" className="textinput" labelClass="label" errorClass="input-error" />
                     <Input name="password" label="Password" className="textinput" labelClass="label" errorClass="input-error" />
                     <div className="buttondiv">
-                        <Button id="submit" value="Create Username" className="submit-button" />
+                        <Button id="submit" value="Sign In" className="submit-button" />
                     </div>
                 </Form>
             </div>
