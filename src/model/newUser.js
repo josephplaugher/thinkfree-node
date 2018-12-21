@@ -10,13 +10,14 @@ const checkUsername = (req, res) => {
     var query = {
         "text":`
         SELECT userid
-        FROM users WHERE username = $1`,
-        "values":[req.body.username]}
+        FROM users WHERE username = $1 OR email = $2`,
+        "values":[req.body.username, req.body.email]}
       Conn.query(query)
         .catch(e => { log(e, 'newUser.js')})
         .then(result => {
                 if(result.rowCount > 0){ 
-                    res.status(200).json({ error : {username:"That username is taken. Please choose something else"}} );
+                    res.status(200).json({ error : {username:`That username is taken, 
+                    or that email is already registered. Please try again.`}} );
                 }else{
                     module.exports.setNewUser(req, res);
                 }
