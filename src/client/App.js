@@ -144,8 +144,18 @@ class App extends React.Component {
                   */}
               </div>
               <div>
-                <Button id="native-login" value="Sign In To Comment" className="submit-button" onClick={() => { this.setState({showForm: true, authForm: 'sign-in'}) }} />
-                <Button id="native-signup" value="Create Username To Comment" className="submit-button" onClick={() => { this.setState({showForm: true, authForm: 'new-user'}) }} />
+                <Button id="native-login" value="Sign In To Comment" className="submit-button" 
+                  onClick={() => { 
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    this.setState({showForm: true, authForm: 'sign-in'});
+                  }} 
+                />
+                <Button id="native-signup" value="Create Username To Comment" className="submit-button" 
+                  onClick={() => { 
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    this.setState({showForm: true, authForm: 'new-user'});
+                  }} 
+                />
               </div>
             </div>
             )}
