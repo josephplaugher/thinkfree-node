@@ -50,6 +50,10 @@ class User extends React.Component {
                     ) : (null)}
                 </div>
             ) : (
+            <div>
+            <div className="lightbox-foundation">
+            {/*this div intentionally empty. Allows the light box content to scroll */}     
+            </div>  
             <div className="lightbox-background">
                 <div className="lightbox">
                     <span className="close-button" onClick={this.props.close}>x</span>
@@ -61,6 +65,7 @@ class User extends React.Component {
                     }
                     </div>
                 </div>
+            </div>
             </div>
                     )}
             </div>
