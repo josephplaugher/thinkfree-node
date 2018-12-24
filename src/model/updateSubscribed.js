@@ -14,10 +14,8 @@ updateSubscribed = (req, res) =>{
   };
   Conn.query(query)
     .catch(e => { 
-      console.log(e)
       log(e, 'updateSubscribed.js')})
     .then(data => {
-      console.log('query: ', query,'database result: ',data)
       res.status(200).json({success: true});
     });
   }

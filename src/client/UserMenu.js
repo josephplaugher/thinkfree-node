@@ -7,13 +7,13 @@ class UserMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            subscribedState: ''
+            subscribedState: false
         };
-        this.setSubscribeState = this.setSubscribeState.bind(this);
-        this.setSubscribeState();
+        //this.setSubscribeState = this.setSubscribeState.bind(this);
+        //this.setSubscribeState();
     }
 
-    setSubscribeState = () => {
+    componentDidMount = () => {
         if(this.props.user.subscribed === true) {
             this.setState({subscribedState: true});
         } else {
@@ -27,13 +27,11 @@ class UserMenu extends React.Component {
             <div className="lightbox-background">
                 <div className="usermenu-lightbox">
                     <span className="close-button" onClick={this.props.hideMenu}>x</span>
-                    <p>
                         {this.props.user.subscribed ? (
                             <p>You are subscribed</p>
                         ) : (
                             <p>You are not subscribed</p>
                         )}
-                    </p>
                     <span className="signout-button" 
                         onClick={this.props.updateSubscribed} >
                         {this.props.user.subscribed ? (

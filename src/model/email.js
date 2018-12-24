@@ -29,7 +29,6 @@ const email = (user, req, res) => {
         if (error) {
             log(error, 'email.js')
         }
-        console.log('Message sent: %s', info.messageId);
         res.status(200).json({email: 'message sent: ' + info})
         // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
         // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...

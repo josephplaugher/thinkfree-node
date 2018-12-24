@@ -24,6 +24,7 @@ class NewUser extends React.Component {
                     <div className="buttondiv">
                         <Button id="submit" value="Create Username" className="submit-button" />
                     </div>
+                    <br/><p className="text">We will never share your information without your consent.</p>
                 </Form>
             </div>
         )
