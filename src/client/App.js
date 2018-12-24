@@ -65,25 +65,7 @@ class App extends React.Component {
         }
       });  
   }
-  /*
-
-  getNativeUser = (email) => {
-    var Googleuser = new LoginGoogleUser(email);
-    let promise = Googleuser.fetchUser();
-      promise.then( (resp) => {  
-        if(resp.data.user){
-          let User = resp.data.user;
-          sessionStorage.setItem('thinkfree-username',User.username);
-          sessionStorage.setItem('thinkfree-email', User.email);
-          sessionStorage.setItem('thinkfree-sub', User.subscribed);
-          this.setState({ userData: User});
-        }
-        if(typeof resp.data.user === 'undefined'){
-          this.setState({ userData: {email: email}});
-        }
-      });  
-  }
-*/
+  
   signInResponse = (resp) => {
     if (resp.success) {
         this.setState({ 
@@ -112,7 +94,6 @@ class App extends React.Component {
   }
 
   updateSubscribed = () => {
-    console.log('change subscribe')
     if(this.state.userData.subscribed === true) {
         let data = {email: this.state.userData.email, subscribe: false}
         Ajax.post(SetUrl() + "/updateSubscribed", data)

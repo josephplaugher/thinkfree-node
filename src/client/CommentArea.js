@@ -2,6 +2,7 @@ import React from 'react';
 import {Form, Input, Button, TextArea} from 'reactform-appco';
 import Ajax from './util/Ajax';
 import SetUrl from './util/SetUrl';
+import ValRules from 'util/ValRules';
 import CommentList from './CommentList';
 import 'css/comments.css'
 
@@ -46,11 +47,17 @@ class User extends React.Component {
             username: sessionStorage.getItem('thinkfree-username')
         }
 
+        const url = SetUrl() + "/newComment";
+
         return (
             <div id="comment-container">
                 <div>
                     {this.props.user.username ? (
-                        <Form formTitle="" action={SetUrl()} response={this.response} extraData={extraData}>
+                        <Form formTitle="" 
+                            action={url} 
+                            response={this.response} 
+                            extraData={extraData}
+                            valrules={ValRules}>
                             <TextArea name="comment" label="" className="comment-box"/>
                             <div className="buttondiv">
                                 <Button id="submit" value="Enter Comment" className="submit-button"/>

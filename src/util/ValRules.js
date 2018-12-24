@@ -17,7 +17,7 @@ const ValRules = [
     {
         name: 'username',
         required: true,
-        alphanumeric: 'true',
+        alphanumeric: true,
         errorMsg: 'Username is required'
     },
     {
@@ -42,6 +42,12 @@ const ValRules = [
         required: true,
         alphanumeric: true,
         errorMsg: 'Please provide a date'
+    },
+    {
+        name: 'comment',
+        required: true,
+        alphanumeric: 'true',
+        errorMsg: ''
     }
 ]
 

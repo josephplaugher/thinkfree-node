@@ -16,6 +16,15 @@ const checkUsername = newUser.checkUsername;
 const updateSubscribed = require('./model/updateSubscribed');
 const nodemailer = require('nodemailer');
 const email = require('./model/email');
+const Sentry = require('@sentry/node');
+
+Sentry.init({ dsn: 'https://566911817f9f4112a1758b7c25c6cbb9@sentry.io/1358140' });
+
+// The request handler must be the first middleware on the app
+app.use(Sentry.Handlers.requestHandler());
+
+// The error handler must be before any other error middleware
+app.use(Sentry.Handlers.errorHandler());
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -23,7 +32,9 @@ app.set('view engine', 'ejs');
 let port = process.env.PORT;
 app.listen(port, function(){
   var msg = 'server started in '+ process.env.NODE_ENV + ' mode on port ' + port;
-  if(process.env.NODE_ENV === 'production') { log('',msg); }
+  if(process.env.NODE_ENV === 'production') { 
+    log('',msg);
+   } else { console.log(msg)}
 });
 
 app.use((req, res, next) => {

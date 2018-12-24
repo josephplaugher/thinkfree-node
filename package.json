@@ -15,6 +15,7 @@
   "author": "Friedman Smith",
   "license": "ISC",
   "dependencies": {
+    "@sentry/node": "^4.4.2",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
@@ -31,7 +32,7 @@
     "react-dom": "^16.4.2",
     "react-google-login-component": "^0.9.3",
     "react-router-dom": "^4.3.1",
-    "reactform-appco": "^1.0.2",
+    "reactform-appco": "^2.0.0",
     "router-express": "^1.5.2",
     "winston": "^3.1.0"
   },

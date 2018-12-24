@@ -33,8 +33,8 @@ class User extends React.Component {
                     <div>
                         <p id="userstate" className="user-menu-area">Signed in as {this.props.user.username}</p>
                         <div id="user-menu-button" className="user-menu-area" onClick={this.showUserMenu}>
-                            <div class="user-menu-bar"></div>
-                            <div class="user-menu-bar"></div>
+                            <div className="user-menu-bar"></div>
+                            <div className="user-menu-bar"></div>
                         </div>
                     </div>
              
