@@ -14,8 +14,6 @@ const newUser = require('./model/newUser');
 const SignIn = require('./model/SignIn');
 const checkUsername = newUser.checkUsername;
 const updateSubscribed = require('./model/updateSubscribed');
-const nodemailer = require('nodemailer');
-const email = require('./model/email');
 const Sentry = require('@sentry/node');
 
 Sentry.init({ dsn: 'https://566911817f9f4112a1758b7c25c6cbb9@sentry.io/1358140' });
