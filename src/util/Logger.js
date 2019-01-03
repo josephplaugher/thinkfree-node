@@ -4,7 +4,7 @@ const logger = winston.createLogger({
     level: 'error',
     transports: [
       new winston.transports.Console(),
-      new winston.transports.File({ filename: './src/server/thinkfree-admin.log' })
+      new winston.transports.File({ filename: './../thinkfree-admin.log' })
     ]
   });
 
