@@ -14,8 +14,9 @@ const newUser = require('./model/newUser');
 const SignIn = require('./model/SignIn');
 const checkUsername = newUser.checkUsername;
 const updateSubscribed = require('./model/updateSubscribed');
-const Sentry = require('@sentry/node');
+//const Sentry = require('@sentry/node');
 
+/*
 Sentry.init({ dsn: 'https://566911817f9f4112a1758b7c25c6cbb9@sentry.io/1358140' });
 
 // The request handler must be the first middleware on the app
@@ -23,6 +24,7 @@ app.use(Sentry.Handlers.requestHandler());
 
 // The error handler must be before any other error middleware
 app.use(Sentry.Handlers.errorHandler());
+*/
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
