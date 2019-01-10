@@ -32,7 +32,7 @@
     "react-dom": "^16.4.2",
     "react-google-login-component": "^0.9.3",
     "react-router-dom": "^4.3.1",
-    "reactform-appco": "^2.0.0",
+    "reactform-appco": "^1.0.3",
     "router-express": "^1.5.2",
     "winston": "^3.1.0"
   },

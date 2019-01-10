@@ -9,7 +9,7 @@ function SignIn(req, res) {
 
 SignIn.prototype.login = function () {
   const query = {
-    "text": `SELECT email, password, username, subscribed 
+    "text": `SELECT email, password, username, subscribe 
       FROM users WHERE email = $1 `,
     "values": [this.inputs.email]
   };
