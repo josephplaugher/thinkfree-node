@@ -23,6 +23,8 @@ class App extends React.Component {
    // this.getNativeUser = this.getNativeUser.bind(this);
     this.signInResponse = this.signInResponse.bind(this);
     this.updateSubscribed = this.updateSubscribed.bind(this);
+    this.showUserForm = this.showUserForm.bind(this);
+    this.scrollToTop = this.scrollToTop.bind(this);
   }
   
   componentDidMount = () => {
@@ -117,6 +119,15 @@ class App extends React.Component {
     
 }
 
+showUserForm = (form) => {
+  this.scrollToTop();
+  this.setState({showForm: true, authForm: form});
+}
+
+scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
   render() {
     return (
       <div>
@@ -145,16 +156,10 @@ class App extends React.Component {
               </div>
               <div>
                 <Button id="native-login" value="Sign In To Comment" className="submit-button" 
-                  onClick={() => { 
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    this.setState({showForm: true, authForm: 'sign-in'});
-                  }} 
+                  onClick={() => this.showUserForm('sign-in')} 
                 />
                 <Button id="native-signup" value="Create Username To Comment" className="submit-button" 
-                  onClick={() => { 
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    this.setState({showForm: true, authForm: 'new-user'});
-                  }} 
+                  onClick={() => this.showUserForm('new-user')} 
                 />
               </div>
             </div>

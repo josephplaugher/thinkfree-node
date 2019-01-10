@@ -9,8 +9,6 @@ class UserMenu extends React.Component {
         this.state = {
             subscribedState: false
         };
-        //this.setSubscribeState = this.setSubscribeState.bind(this);
-        //this.setSubscribeState();
     }
 
     componentDidMount = () => {

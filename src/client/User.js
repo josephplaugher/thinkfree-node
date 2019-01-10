@@ -17,6 +17,7 @@ class User extends React.Component {
     }
 
     showUserMenu = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         this.setState({showUserMenu: true});
     }
 
