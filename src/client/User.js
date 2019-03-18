@@ -34,7 +34,7 @@ class User extends React.Component {
               <p id="userstate" className="user-menu-area">Signed in as {this.props.user.username}</p>
               <div className="user-menu-area">
               <MenuButton style={{ bordercolor: "grey" }} 
-                  barStyle={{backgroundColor: "black"}} 
+                  barStyle={{backgroundColor: "#2665c4"}} 
                   onClick={this.toggleUserMenu} 
               />
               </div>
@@ -48,8 +48,12 @@ class User extends React.Component {
                     showMenu={this.state.showUserMenu}
                     closeHandler={this.toggleUserMenu}
                     style={{
-                      backgroundColor: "lightgrey",
-                      height: "200px",
+                      backgroundColor: "white",
+                      borderColor: "#2665c4",
+                      borderRadius: "5px",
+                      borderStyle: "solid",
+                      borderColor: "#2665c4",
+                      height: "170px",
                       width: "250px"
                     }}
                   >
@@ -70,7 +74,14 @@ class User extends React.Component {
           <>
             {/* prettier-ignore */}
             <LightBox
-              close={this.props.close} style={{backgroundColor: "white", width: "275px", height: "400px" }}>
+              close={this.props.close} 
+              style={{backgroundColor: "white",
+                borderColor: "#2665c4",
+                borderRadius: "5px",
+                borderStyle: "solid",
+                borderColor: "#2665c4",
+                height: "auto",
+                width: "250px"}}>
               <div>
                 {this.props.authForm === "sign-in" ? (
                   <EB comp="sign-in in User.js">

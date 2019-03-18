@@ -1,5 +1,24 @@
-#login-status {
-  line-height: 0px;
+.formTitle {
+  color: #2665c4;
+  font-size: 18px;
+  text-align: left;
+  padding-left: 30px;
+}
+
+.form-container {
+  background-color: white;
+  width: 250px;
+  height: auto;
+  margin: auto;
+}
+
+.buttondiv {
+  clear: both;
+  margin: 10px;
+}
+
+.text {
+  color: #2665c4;
 }
 
 #user-menu-button {
@@ -19,4 +38,5 @@
 .user-menu-area {
   display: inline-block;
   line-height: 0px;
+  margin-left: 10px;
 }

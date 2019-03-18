@@ -1,5 +1,5 @@
 .formTitle {
-  color: black;
+  color: #2665c4;
   font-size: 18px;
   text-align: left;
   padding-left: 30px;
@@ -8,8 +8,10 @@
 .rfa_textinput {
   border-top: 0px;
   border-right: 0px;
+  border-left: 0.5px solid #2665c4;
+  border-bottom: 0.5px solid #2665c4;
+  border-radius: 5px;
   padding: 5px;
-  background-color: grey;
 }
 
 .form-container {
@@ -24,7 +26,9 @@
   margin: 14px;
 }
 
-.label {
+.rfa_label {
+  color: #2665c4;
+  border-color: #2665c4;
   position: absolute;
   margin-top: -9px;
   margin-left: 10px;
@@ -36,7 +40,12 @@
   margin: 0px;
   padding: 5px;
   cursor: pointer;
+  color: #2665c4;
   background-color: white;
+  border-radius: 5px;
+  border-color: #2665c4;
+  border-style: solid;
+  border-width: 3px;
 }
 
 .buttondiv {
@@ -52,5 +61,5 @@
 }
 
 .text {
-  color: black;
+  color: #2665c4;
 }
