@@ -1,40 +1,53 @@
-import React from 'react';
-import * as ReactForm from 'reactform-appco';
-import ValRules from 'util/ValRules'
-import SetUrl from './util/SetUrl'
-import 'css/lightbox.css';
-import 'css/form.css';
+import React from "react";
+import { FormClass, Input, Button } from "reactform-appco";
+import ValRules from "util/ValRules";
+import "css/lightbox.css";
+import "css/form.css";
 
-const Form = ReactForm.Form;
-const Input = ReactForm.Input;
-const Button = ReactForm.Button;
+class SignIn extends FormClass {
+  constructor(props) {
+    super(props);
+    this.useLiveSearch = false;
+    this.route = "/signIn";
+    this.valRules = ValRules;
+    this.state = {
+      email: "",
+      password: "",
+      formData: {
+        email: "",
+        password: ""
+      },
+      userNotify: {
+        success: "",
+        email: "",
+        password: "",
+        message: ""
+      },
+      user: {}
+    };
+    this.response = this.response.bind(this);
+  }
 
-class SignIn extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { user: {} };
-    }
+  response(res) {
+    // delagate the response to the parent User component
+    this.props.response(res.data);
+  }
 
-    render() {
-        const url = SetUrl() + "/signIn";
-
-        return (
-            <div>
-                <p className="input-error">{this.props.userNotify}</p>
-                <Form formTitle="Sign In"
-                    action={url}
-                    response={this.props.response}
-                    valrules={ValRules} >
-                    <Input name="email" label="Email" className="textinput" labelClass="label" errorClass="input-error" />
-                    <Input name="password" label="Password" className="textinput" labelClass="label" errorClass="input-error" />
-                    <div className="buttondiv">
-                        <Button id="submit" value="Sign In" className="submit-button" />
-                    </div>
-                </Form>
+  render() {
+    return (
+      <div>
+        {/* prettier-ignore*/}
+        <form onSubmit={this.rfa_onSubmit} >
+            <Input name="email" label="Email" value={this.state.email} onChange={this.rfa_onChange} /> 
+            <Input name="password" label="Password" value={this.state.password} onChange={this.rfa_onChange} /> 
+            <div className="buttondiv">
+                <Button id="submit" value="Sign In" className="submit-button" />
             </div>
-        )
-    }
-
+        </form>
+        <p className="input-error">{this.state.userNotify.message}</p>
+      </div>
+    );
+  }
 }
 
 export default SignIn;

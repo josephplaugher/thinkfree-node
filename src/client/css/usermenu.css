@@ -1,17 +1,22 @@
+#login-status {
+  line-height: 0px;
+}
+
 #user-menu-button {
-    clear: left;
-    margin-left: 20px;
-    cursor: pointer;
-    background-color:#2665C4;
+  clear: left;
+  margin-left: 20px;
+  cursor: pointer;
+  background-color: #2665c4;
 }
 
 .user-menu-bar {
-    width: 20px;
-    height: 3px;
-    background-color:white;
-    margin: 3px 0;
+  width: 20px;
+  height: 3px;
+  background-color: white;
+  margin: 3px 0;
 }
 
 .user-menu-area {
-    display: inline-block;
+  display: inline-block;
+  line-height: 0px;
 }

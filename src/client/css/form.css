@@ -1,64 +1,56 @@
 .formTitle {
-    color: #2665C4;
-    font-size: 18px;
-    text-align: left;
-    padding-left: 30px;
+  color: black;
+  font-size: 18px;
+  text-align: left;
+  padding-left: 30px;
 }
 
-.textinput {
-    border-top: 0px;
-    border-right: 0px;
-    border-left: .5px solid #2665C4;
-    border-bottom: .5px solid #2665C4;
-    border-radius: 5px;
-    padding: 5px;
+.rfa_textinput {
+  border-top: 0px;
+  border-right: 0px;
+  padding: 5px;
+  background-color: grey;
 }
 
 .form-container {
-    background-color: white;
-    width: 250px;
-    height: auto;
-    margin: auto;
+  background-color: white;
+  width: 250px;
+  height: auto;
+  margin: auto;
 }
 
 .input-container {
-    display: inline-block;
-    margin: 14px;
+  display: inline-block;
+  margin: 14px;
 }
 
 .label {
-    color: #2665C4;
-    border-color: #2665C4;
-    position: absolute;
-    margin-top: -9px;
-    margin-left: 10px;
-    font-size: 12px;
+  position: absolute;
+  margin-top: -9px;
+  margin-left: 10px;
+  font-size: 12px;
 }
 
-.submit-button {
-    float:left;
-    margin: 0px;
-    padding: 5px;
-    cursor: pointer;
-    background-color: white;
-    border-radius: 5px;
-    border-color: #2665C4;
-    border-style: solid;
-    border-width: 3px;
+.rfa_submit {
+  float: left;
+  margin: 0px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: white;
 }
 
 .buttondiv {
-    clear: both;
-    margin: 10px;
+  clear: both;
+  margin: 10px;
 }
 
-.input-error {
-    font-size: 10px;
-    color: red;
-    width: 200px;
-    word-wrap: break-word;
+.rfa_input-error {
+  font-size: 10px;
+  color: red;
+  width: 200px;
+  word-wrap: break-word;
 }
 
 .text {
-    color: #2665C4;
+  color: black;
 }
