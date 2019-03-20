@@ -43,7 +43,7 @@ class User extends React.Component {
 
             {this.state.showUserMenu ? (
               <EB comp="UserMenu in User.js">
-                <>
+                <div id="mobile-check">
                   <Menu
                     showMenu={this.state.showUserMenu}
                     closeHandler={this.toggleUserMenu}
@@ -66,7 +66,7 @@ class User extends React.Component {
                       updateSubscribed={this.props.updateSubscribed}
                     />
                   </Menu>
-                </>
+                </div>
               </EB>
             ) : null}
           </>
@@ -81,7 +81,10 @@ class User extends React.Component {
                 borderStyle: "solid",
                 borderColor: "#2665c4",
                 height: "auto",
-                width: "250px"}}>
+                width: "250px",
+                left: "5"
+                }}
+                >
               <div>
                 {this.props.authForm === "sign-in" ? (
                   <EB comp="sign-in in User.js">

@@ -40,3 +40,10 @@
   line-height: 0px;
   margin-left: 10px;
 }
+
+/* places the user menu at the left side of the screen if on mobile */
+@media screen and (max-width: 700px) {
+  #mobile-check {
+    left: 0px;
+  }
+}
