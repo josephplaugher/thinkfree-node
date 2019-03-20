@@ -1,232 +1,226 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
 .logo {
-    font-family: serif;
-    color: rgba(255, 0, 0, 0.829);
- }
- 
-@media screen and (min-width:701px) {
-
-    #container {
-        background-color: #FFFFFF;
-        width: auto;
-        height: auto;
-    }
-
-    #header {
-        background-color: blue;
-        padding: 50px;
-    }
-
-    .pageheader{
-        color: #FFFFFF;
-        font-size: 50px;
-        width: 80%;
-        margin-left:80px;
-    }
-
-    .menu-button, .bar {
-        display: none;
-    }
-
-    .bloglist {
-        margin:auto;
-        margin-top: 20px;
-        padding: 15px;
-        width: 95%;
-        float: right;
-        cursor: pointer;
-        max-height: 500px;
-        overflow-y: auto;
-    }
-    
-    #bloglist-container {
-        right: 0px;
-        width: 25%;
-        top: 160px;
-        position: absolute;
-        float: right;
-    }
-
-    .listTitle{
-        font-size: 20px;
-    }
-
-    .listDesc{
-        font-size: 12px;
-    }
-
-    .open {
-        display: none;
-    }
-
-    #viewblog {
-        padding:20px;
-        width: 73%;
-        float: left;
-        display: block;
-    }
-
-    #title {
-        font-size: 30px;
-        padding:35px;
-        text-align: center;
-    }
-
-    #description {
-        font-size: 20px;
-        padding:25px;
-        text-align: center;
-    }
-
-    #body {
-        font-size: 12px;
-        padding-bottom: 30px;
-    }
-
-    #currentView {
-        margin: auto;
-        text-align: left
-    }
-
-    .blogbody {
-        font-size: 12px;
-    }
-
-    .textinput {
-        text-align: left;
-        padding: 10px;
-        background-color: white ;
-        width: 200px;
-        margin: auto;
-        height: auto;
-        color: black;
-        border-radius: 5px;
-        line-height: 20px;
-        display: inline-block;
-    }
-
+  font-family: serif;
+  color: rgba(255, 0, 0, 0.829);
 }
 
-@media screen and (max-width:700px){
+@media screen and (min-width: 701px) {
+  #container {
+    background-color: #ffffff;
+    width: auto;
+    height: auto;
+  }
 
-    #container {
-        background-color: #FFFFFF;
-        width: auto;
-        height: auto;
-    }
+  #header {
+    background-color: blue;
+    padding: 50px;
+  }
 
-    #header {
-        background-color: blue;
-        padding: 10px;
-    }
+  .pageheader {
+    color: #ffffff;
+    font-size: 50px;
+    width: 80%;
+    margin-left: 80px;
+  }
 
-    .pageheader{
-        color: #FFFFFF;
-        font-size: 40px;
-        width: 95%;
-        margin-left:3px;
-    }
+  .menu-button,
+  .bar {
+    display: none;
+  }
 
-    #bloglist-container {
-        display: none;
-        color: #2665C4;
-        background-color: white;
-        border: 2px solid #2665C4;
-        top: 70px;
-        position: absolute;
-        padding: 5px;
-        border-radius: 5px;
-        margin-top: 23px;
-        width: 90%;
-        height: 350px;
-        right:0px;
-        cursor: pointer;
-        max-height: 500px;
-        overflow-y: auto;
-        z-index: +10;
-    }
+  .bloglist {
+    margin: auto;
+    margin-top: 20px;
+    padding: 15px;
+    width: 95%;
+    float: right;
+    cursor: pointer;
+    max-height: 500px;
+    overflow-y: auto;
+  }
 
-    #menu-button {
-        clear: both;
-        position: absolute;
-        float: right;
-        right: 5px;
-        top: 15px;
-        cursor: pointer;
-    }
-    
-    .bar {
-        width: 20px;
-        height: 3px;
-        background-color:white;
-        margin: 3px 0;
-    }
+  #bloglist-container {
+    right: 0px;
+    width: 25%;
+    top: 160px;
+    position: absolute;
+    float: right;
+  }
 
-    .listTitle{
-        font-size: 20px;
-    }
+  .listTitle {
+    font-size: 20px;
+  }
 
-    .listDesc{
-        font-size: 12px;
-    }
+  .listDesc {
+    font-size: 12px;
+  }
 
-    .open {
-        display: none;
-    }
+  .open {
+    display: none;
+  }
 
-    #viewblog {
-        padding: 0px;
-        display: inline;
-    }
+  #viewblog {
+    padding: 20px;
+    width: 73%;
+    float: left;
+    display: block;
+  }
 
-    #title {
-        font-size: 30px;
-        padding:3px;
-        text-align: center;
-    }
+  #title {
+    text-align: center;
+  }
 
-    #description {
-        font-size: 20px;
-        padding:3px;
-        text-align: center;
-    }
+  #description {
+    text-align: center;
+  }
 
-    #body {
-        font-size: 12px;
-        padding-left: 3px;
-        padding-right: 3px;
-        padding-bottom: 30px;
-    }
+  #body {
+    font-size: 12px;
+    padding-bottom: 30px;
+  }
 
-    #currentView {
-        margin: auto;
-        text-align: left
-    }
+  #currentView {
+    margin: auto;
+    text-align: left;
+  }
 
-    .blogbody {
-        font-size: 12px;
-    }
+  .blogbody {
+    font-size: 12px;
+  }
 
-    input[textarea] {
-    width:200px;
-    }
+  .textinput {
+    text-align: left;
+    padding: 10px;
+    background-color: white;
+    width: 200px;
+    margin: auto;
+    height: auto;
+    color: black;
+    border-radius: 5px;
+    line-height: 20px;
+    display: inline-block;
+  }
+}
 
-    .textinput {
-        text-align: left;
-        padding: 10px;
-        width: 200px;
-        margin: auto;
-        height: auto;
-        color: black;
-        border-radius: 5px;
-        line-height: 20px;
-        display: inline-block;
-    }
+@media screen and (max-width: 700px) {
+  #container {
+    background-color: #ffffff;
+    width: auto;
+    height: auto;
+  }
 
+  #header {
+    background-color: blue;
+    padding: 10px;
+  }
+
+  .pageheader {
+    color: #ffffff;
+    font-size: 40px;
+    width: 95%;
+    margin-left: 3px;
+  }
+
+  #bloglist-container {
+    display: none;
+    color: #2665c4;
+    background-color: white;
+    border: 2px solid #2665c4;
+    top: 70px;
+    position: absolute;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 23px;
+    width: 90%;
+    height: 350px;
+    right: 0px;
+    cursor: pointer;
+    max-height: 500px;
+    overflow-y: auto;
+    z-index: +10;
+  }
+
+  #menu-button {
+    clear: both;
+    position: absolute;
+    float: right;
+    right: 5px;
+    top: 15px;
+    cursor: pointer;
+  }
+
+  .bar {
+    width: 20px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+  }
+
+  .listTitle {
+    font-size: 20px;
+  }
+
+  .listDesc {
+    font-size: 12px;
+  }
+
+  .open {
+    display: none;
+  }
+
+  #viewblog {
+    padding: 0px;
+    display: inline;
+  }
+
+  #title {
+    font-size: 30px;
+    padding: 3px;
+    text-align: center;
+  }
+
+  #description {
+    font-size: 20px;
+    padding: 3px;
+    text-align: center;
+  }
+
+  #body {
+    font-size: 12px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 30px;
+  }
+
+  #currentView {
+    margin: auto;
+    text-align: left;
+  }
+
+  .blogbody {
+    font-size: 12px;
+  }
+
+  input[textarea] {
+    width: 200px;
+  }
+
+  .textinput {
+    text-align: left;
+    padding: 10px;
+    width: 200px;
+    margin: auto;
+    height: auto;
+    color: black;
+    border-radius: 5px;
+    line-height: 20px;
+    display: inline-block;
+  }
 }
